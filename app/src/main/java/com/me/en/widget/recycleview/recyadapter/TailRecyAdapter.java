@@ -17,7 +17,7 @@ public abstract class TailRecyAdapter<T> extends EnBaseRecyAdapter<T> {
 
     private static final String TAG = "ArticleRecyAdapter3";
 
-    private final int BOTTOM=0;
+    private final int BOTTOM = 0;
 
     private View bottomView;
 
@@ -51,11 +51,10 @@ public abstract class TailRecyAdapter<T> extends EnBaseRecyAdapter<T> {
     /**
      * 恢复加载状态,
      */
-    public static final int LOAD =2;
+    public static final int LOAD = 2;
 
 
     private LoadMoreView loadMoreView;
-
 
 
     /**
@@ -66,7 +65,7 @@ public abstract class TailRecyAdapter<T> extends EnBaseRecyAdapter<T> {
      */
     public void setBottomView(RecyclerView rv) {
 
-        if (rv.getLayoutManager() == null){
+        if (rv.getLayoutManager() == null) {
             Log.d(TAG, "setBottomView: 需要先设置LayoutManager");
         } else {
             loadMoreView = new LoadMoreView(rv);
@@ -77,10 +76,10 @@ public abstract class TailRecyAdapter<T> extends EnBaseRecyAdapter<T> {
 
     @Override
     public EnViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        if (viewType==BOTTOM){
+        if (viewType == BOTTOM) {
             return new EnViewHolder(bottomView);
 
-        }else {
+        } else {
             return super.onCreateViewHolder(parent, viewType);
         }
     }
@@ -90,7 +89,6 @@ public abstract class TailRecyAdapter<T> extends EnBaseRecyAdapter<T> {
     public int getItemViewType(int position) {
 
         if (position != list.size()) {
-
             return super.getItemViewType(position);
         } else {
             return BOTTOM;
@@ -101,10 +99,9 @@ public abstract class TailRecyAdapter<T> extends EnBaseRecyAdapter<T> {
 
     @Override
     public int getItemCount() {
-        if (bottomView!=null){
-            return super.getItemCount()==0?0:super.getItemCount()+1;
-
-        }else {
+        if (bottomView != null) {
+            return super.getItemCount() == 0 ? 0 : super.getItemCount() + 1;
+        } else {
             return super.getItemCount();
         }
     }
@@ -123,7 +120,6 @@ public abstract class TailRecyAdapter<T> extends EnBaseRecyAdapter<T> {
 
         finishLoad(state);
     }
-
 
 
     /**
@@ -148,8 +144,6 @@ public abstract class TailRecyAdapter<T> extends EnBaseRecyAdapter<T> {
         }
         loadMoreView.setPbVisibility(View.GONE);
     }
-
-
 
 
 }

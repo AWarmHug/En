@@ -102,7 +102,7 @@ public abstract class EnBaseRecyAdapter<T> extends RecyclerView.Adapter<EnBaseRe
     @Override
     public int getItemCount() {
 
-        return list == null ? 0 : list.size() + 1;
+        return list == null ? 0 : list.size();
 
 
     }

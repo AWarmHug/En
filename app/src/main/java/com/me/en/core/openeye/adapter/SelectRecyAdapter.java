@@ -18,11 +18,13 @@ import java.util.List;
  * 简介:
  */
 
-public class SelectRecyAdapter extends EnBaseRecyAdapter<SelectBean.ItemListBean> {
+public class SelectRecyAdapter extends TailRecyAdapter<SelectBean.ItemListBean> {
 
 
     public SelectRecyAdapter(List<SelectBean.ItemListBean> list) {
         super(list);
+
+
     }
 
     @Override
@@ -35,7 +37,7 @@ public class SelectRecyAdapter extends EnBaseRecyAdapter<SelectBean.ItemListBean
         ((SelectViewHolder) holder).tv.setText(list.get(position).getData().getTitle());
     }
 
-    class SelectViewHolder extends EnViewHolder {
+    static class SelectViewHolder extends EnViewHolder {
         TextView tv;
 
         public SelectViewHolder(View itemView) {

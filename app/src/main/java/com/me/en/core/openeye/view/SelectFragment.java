@@ -72,6 +72,7 @@ public class SelectFragment extends LazyFragment implements SelectView {
     @Override
     public void getSelectSuccess(SelectBean selectBean) {
         SelectRecyAdapter selectRecyAdapter=new SelectRecyAdapter(selectBean.getItemList());
+        selectRecyAdapter.setBottomView(rv_select);
         rv_select.setAdapter(selectRecyAdapter);
 
 
