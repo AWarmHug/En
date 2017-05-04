@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/menu_main"
+        android:icon="@drawable/ic_vec_main"
+        android:title="瞥一眼"
+        />
+    <item
+        android:id="@+id/menu_notify"
+        android:icon="@drawable/ic_vec_notify"
+        android:title="通知"
+        />
+    <item
+        android:id="@+id/menu_more"
+        android:icon="@drawable/ic_vec_find"
+        android:title="发现"
+        />
+
+</menu>

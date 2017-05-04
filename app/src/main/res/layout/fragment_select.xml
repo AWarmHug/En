@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/tb_select"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/AppTheme.ToolBar"
+        >
+    </android.support.v7.widget.Toolbar>
+
+    <com.me.en.widget.recycleview.EnRecycleView
+        android:id="@+id/rv_select"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </com.me.en.widget.recycleview.EnRecycleView>
+
+
+
+</LinearLayout>

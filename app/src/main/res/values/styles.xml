@@ -1,0 +1,69 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+
+    <style name="AppTheme.ToolBar" parent="Widget.AppCompat.Toolbar">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="titleTextAppearance">@style/AppTheme.TextAppearance.ToolBar</item>
+        <item name="contentInsetStartWithNavigation">0dp</item>
+        <item name="elevation">@dimen/toolbar_elevation</item>
+        <item name="android:background">@color/white</item>
+    </style>
+
+
+    <style name="AppTheme.BottomNavigationView" parent="Widget.Design.BottomNavigationView">
+        <item name="elevation">@dimen/BottomNavigationView_elevation</item>
+        <item name="itemBackground">@color/white</item>
+    </style>
+
+
+
+
+    <style name="AppTheme.TextAppearance" parent="TextAppearance.AppCompat">
+        <item name="android:textSize">16sp</item>
+
+    </style>
+
+    <style name="AppTheme.TextAppearance.Title" parent="TextAppearance.AppCompat.Title">
+        <item name="android:textSize">@dimen/title_sp</item>
+        <item name="android:textColor">@color/dark_text</item>
+
+    </style>
+
+    <style name="AppTheme.TextAppearance.Name" parent="TextAppearance.AppCompat.Title">
+        <item name="android:textSize">@dimen/name_sp</item>
+        <item name="android:textColor">@color/dark_text</item>
+    </style>
+
+    <style name="AppTheme.TextAppearance.Body" parent="TextAppearance.AppCompat.Body1">
+        <item name="android:textSize">@dimen/body_sp</item>
+        <item name="android:textColor">@color/body</item>
+    </style>
+
+    <style name="AppTheme.TextAppearance.Other" parent="TextAppearance.AppCompat.Body2">
+        <item name="android:textSize">@dimen/other_sp</item>
+        <item name="android:textColor">@color/other</item>
+    </style>
+
+    <style name="AppTheme.TextAppearance.ToolBar" parent="TextAppearance.AppCompat.Title">
+        <item name="android:textColor">@color/dark_text</item>
+        <item name="android:textSize">18sp</item>
+    </style>
+
+    <style name="AppTheme.TextAppearance.Tab">
+        <item name="android:textColor">@color/dark_text</item>
+        <item name="android:textSize">15sp</item>
+
+    </style>
+
+
+
+</resources>
