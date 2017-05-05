@@ -1,4 +1,4 @@
-package com.me.en.core.openeye.view;
+package com.me.en.core.yixi.view;
 
 /**
  * 作者: 51hs_android

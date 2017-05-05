@@ -8,8 +8,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import butterknife.ButterKnife;
-
 /**
  * 作者: 51hs_android
  * 时间: 2017/5/3
@@ -18,6 +16,12 @@ import butterknife.ButterKnife;
 
 public abstract class GodFragment extends Fragment {
 
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+    }
 
     @Nullable
     @Override
@@ -28,6 +32,7 @@ public abstract class GodFragment extends Fragment {
         return view;
     }
     protected abstract int getLayout();
+
 
 
     protected abstract void initView(View view, Bundle savedInstanceState);

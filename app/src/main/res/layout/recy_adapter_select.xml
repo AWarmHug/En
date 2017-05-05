@@ -1,11 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/cv"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical">
+    style="@style/AppTheme.CardView.Album"
+    app:contentPaddingLeft="@dimen/left_right_margin_16dp"
+    app:contentPaddingRight="@dimen/left_right_margin_16dp"
+    app:contentPaddingTop="@dimen/top_bottom_margin_8dp"
+    app:contentPaddingBottom="@dimen/top_bottom_margin_8dp"
+    >
 
-    <TextView
-        android:id="@+id/tv"
+    <RelativeLayout
+        android:id="@+id/rl"
         android:layout_width="match_parent"
-        android:layout_height="50dp" />
-</LinearLayout>
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/tv_title"
+            style="@style/AppTheme.TextAppearance.Title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="茅明睿「数据与城市正义」" />
+        <TextView
+            android:id="@+id/tv_desc"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/AppTheme.TextAppearance.Body"
+            android:text="我们自发地在开展一些寻求城市正义的实践，但是仅靠我们自己，是没有力量跟公权力、跟开发商、跟市场的资本去博弈的，因为我们缺乏盟友。这些盟友是谁？就是在座的各位，是我们的市民。"
+            android:layout_below="@+id/tv_title"
+            android:layout_marginTop="@dimen/top_bottom_margin_8dp"
+
+            />
+
+
+    </RelativeLayout>
+
+
+</android.support.v7.widget.CardView>

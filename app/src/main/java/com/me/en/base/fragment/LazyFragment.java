@@ -15,6 +15,9 @@ import com.me.en.App;
 
 public abstract class LazyFragment extends GodFragment {
 
+
+
+
     /**
      * 判断是不是一次可见,
      */
@@ -31,6 +34,13 @@ public abstract class LazyFragment extends GodFragment {
     private boolean isVisible;
 
 
+  private   Bundle mSavedFragmentState;
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        mSavedFragmentState=savedInstanceState;
+    }
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
@@ -43,23 +53,23 @@ public abstract class LazyFragment extends GodFragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        initPrepare();
+        initPrepare(mSavedFragmentState);
     }
 
     /**
      * 这是一个实际操作方法
      */
-    private synchronized void initPrepare() {
+    private synchronized void initPrepare(@Nullable Bundle savedInstanceState) {
 
         if (isInflate && isVisible) {
             if (isFirst) {
-                doFirstVisible();
+                doFirstVisible(savedInstanceState);
                 isFirst = false;
             } else {
-                doVisible();
+                doVisible(savedInstanceState);
             }
         } else {
-            doInVisible();
+            doInVisible(savedInstanceState);
         }
     }
 
@@ -70,30 +80,31 @@ public abstract class LazyFragment extends GodFragment {
         if (isVisibleToUser) {
             isVisible = true;
             if (isFirst) {
-                initPrepare();
+                initPrepare(mSavedFragmentState);
             } else {
-                initPrepare();
+                initPrepare(mSavedFragmentState);
             }
         } else {
             isVisible = false;
-            initPrepare();
+            initPrepare(mSavedFragmentState);
         }
     }
 
     /**
      * 用户不可见时.
      */
-    protected abstract void doInVisible();
+    protected abstract void doInVisible(@Nullable Bundle savedInstanceState);
 
     /**
      * 第一次加载出来,我们可以进行数据加载
+     * @param savedInstanceState
      */
-    protected abstract void doFirstVisible();
+    protected abstract void doFirstVisible(@Nullable Bundle savedInstanceState);
 
     /**
      * 用户可见时,但不是第一次可见,就是回到从其他页面回到当前页面时.
      */
-    protected abstract void doVisible();
+    protected abstract void doVisible(@Nullable Bundle savedInstanceState);
 
 
 

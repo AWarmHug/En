@@ -8,19 +8,26 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="AppTheme.FitStateBar">
+        <item name="android:windowActionBar">false</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:windowTranslucentStatus">true</item>
+    </style>
+
 
     <style name="AppTheme.ToolBar" parent="Widget.AppCompat.Toolbar">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="titleTextAppearance">@style/AppTheme.TextAppearance.ToolBar</item>
         <item name="contentInsetStartWithNavigation">0dp</item>
-        <item name="elevation">@dimen/toolbar_elevation</item>
-        <item name="android:background">@color/white</item>
+        <item name="elevation">@dimen/toolbar_elevation_12dp</item>
     </style>
 
 
     <style name="AppTheme.BottomNavigationView" parent="Widget.Design.BottomNavigationView">
-        <item name="elevation">@dimen/BottomNavigationView_elevation</item>
+        <item name="elevation">@dimen/bottomNavigationView_elevation_8dp</item>
         <item name="itemBackground">@color/white</item>
     </style>
 
@@ -33,23 +40,29 @@
     </style>
 
     <style name="AppTheme.TextAppearance.Title" parent="TextAppearance.AppCompat.Title">
-        <item name="android:textSize">@dimen/title_sp</item>
+        <item name="android:textSize">@dimen/title_18sp</item>
+        <item name="android:textColor">@color/dark_text</item>
+
+    </style>
+
+    <style name="AppTheme.TextAppearance.Title.BIG" parent="TextAppearance.AppCompat.Title">
+        <item name="android:textSize">@dimen/title_28sp</item>
         <item name="android:textColor">@color/dark_text</item>
 
     </style>
 
     <style name="AppTheme.TextAppearance.Name" parent="TextAppearance.AppCompat.Title">
-        <item name="android:textSize">@dimen/name_sp</item>
+        <item name="android:textSize">@dimen/name_16sp</item>
         <item name="android:textColor">@color/dark_text</item>
     </style>
 
     <style name="AppTheme.TextAppearance.Body" parent="TextAppearance.AppCompat.Body1">
-        <item name="android:textSize">@dimen/body_sp</item>
+        <item name="android:textSize">@dimen/body_12sp</item>
         <item name="android:textColor">@color/body</item>
     </style>
 
     <style name="AppTheme.TextAppearance.Other" parent="TextAppearance.AppCompat.Body2">
-        <item name="android:textSize">@dimen/other_sp</item>
+        <item name="android:textSize">@dimen/other_12sp</item>
         <item name="android:textColor">@color/other</item>
     </style>
 
@@ -63,6 +76,18 @@
         <item name="android:textSize">15sp</item>
 
     </style>
+
+
+    <style name="AppTheme.CardView" parent="CardView">
+        <item name="cardElevation">@dimen/cardview_elevation_8dp</item>
+
+    </style>
+
+    <style name="AppTheme.CardView.Album">
+        <item name="cardCornerRadius">@dimen/cardview_default_radius</item>
+
+    </style>
+
 
 
 

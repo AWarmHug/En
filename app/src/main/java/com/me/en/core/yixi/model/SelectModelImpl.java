@@ -1,11 +1,11 @@
-package com.me.en.core.openeye.model;
+package com.me.en.core.yixi.model;
 
 import android.util.Log;
 
 import com.me.en.base.Listener;
 import com.me.en.entity.Error;
-import com.me.en.entity.SelectBean;
-import com.me.en.net.Api.SelectedApi;
+import com.me.en.entity.AlbumBean;
+import com.me.en.net.Api.YixiApi;
 import com.me.en.net.RetrofitHelper;
 
 import io.reactivex.Observer;
@@ -24,26 +24,27 @@ public class SelectModelImpl implements SelectModel {
     private static final String TAG = "SelectModelImpl";
 
     @Override
-    public void getSelect(final Listener<SelectBean> listener) {
+    public void getSelect(final Listener<AlbumBean> listener) {
 
-        RetrofitHelper.getApi(SelectedApi.class).getSelect("selected")
+        RetrofitHelper.getApi(YixiApi.class).getSelect("album")
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Observer<SelectBean>() {
+                .subscribe(new Observer<AlbumBean>() {
                     @Override
                     public void onSubscribe(@NonNull Disposable d) {
 
                     }
 
                     @Override
-                    public void onNext(@NonNull SelectBean selectBean) {
+                    public void onNext(@NonNull AlbumBean albumBean) {
                         Log.d(TAG, "onNext: "+Thread.currentThread().getName());
-                        listener.success(selectBean);
+                        listener.success(albumBean);
 
                     }
 
                     @Override
                     public void onError(@NonNull Throwable e) {
+                        Log.d(TAG, "onError: "+e.getMessage());
                         listener.fail(new Error(0,e.getMessage()));
 
                     }

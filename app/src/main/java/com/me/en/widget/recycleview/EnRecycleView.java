@@ -16,8 +16,7 @@ import android.view.MotionEvent;
  */
 
 public class EnRecycleView extends RecyclerView {
-    private static final String TAG = "MyRecycleView";
-
+    private static final String TAG = "EnRecycleView";
     private LoadMore loadMore;
 
     private float startY;

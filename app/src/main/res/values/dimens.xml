@@ -3,6 +3,9 @@
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
 
+    <dimen name="left_right_margin_16dp">16dp</dimen>
+    <dimen name="top_bottom_margin_8dp">8dp</dimen>
+
     <dimen name="title_size_morebig">22dp</dimen>
     <dimen name="title_size_more">17dp</dimen>
     <dimen name="title_size">16dp</dimen>
@@ -11,13 +14,22 @@
     <dimen name="text_size">16sp</dimen>
     <dimen name="fab_margin">16dp</dimen>
 
-    <dimen name="title_sp">18sp</dimen>
-    <dimen name="body_sp">12sp</dimen>
-    <dimen name="name_sp">16sp</dimen>
-    <dimen name="other_sp">12sp</dimen>
+    <dimen name="title_18sp">18sp</dimen>
+    <dimen name="title_28sp">28sp</dimen>
 
-    <dimen name="toolbar_height">56dp</dimen>
-    <dimen name="toolbar_elevation">12dp</dimen>
-    <dimen name="BottomNavigationView_elevation">8dp</dimen>
+    <dimen name="body_12sp">12sp</dimen>
+    <dimen name="name_16sp">16sp</dimen>
+    <dimen name="other_12sp">12sp</dimen>
+
+    <dimen name="toolbar_height_56dp">56dp</dimen>
+    <dimen name="toolbar_elevation_12dp">12dp</dimen>
+
+    <dimen name="bottomNavigationView_elevation_8dp">8dp</dimen>
+
+    <dimen name="cardview_elevation_8dp">8dp</dimen>
+
+    <dimen name="cardview_album_cornerradius_16dp">16dp</dimen>
+
+
 
 </resources>

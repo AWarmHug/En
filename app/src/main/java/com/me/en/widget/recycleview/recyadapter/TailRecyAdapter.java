@@ -17,7 +17,7 @@ public abstract class TailRecyAdapter<T> extends EnBaseRecyAdapter<T> {
 
     private static final String TAG = "ArticleRecyAdapter3";
 
-    private final int BOTTOM = 0;
+    private final int BOTTOM = -1;
 
     private View bottomView;
 
@@ -49,13 +49,22 @@ public abstract class TailRecyAdapter<T> extends EnBaseRecyAdapter<T> {
     public static final int NO_DATA = 1;
 
     /**
-     * 恢复加载状态,
+     * 加载状态,
      */
     public static final int LOAD = 2;
 
 
     private LoadMoreView loadMoreView;
 
+
+    public int getState() {
+        return state;
+    }
+
+    public void setState(int state) {
+        this.state = state;
+        doLoad(state);
+    }
 
     /**
      * 添加尾部
@@ -71,18 +80,32 @@ public abstract class TailRecyAdapter<T> extends EnBaseRecyAdapter<T> {
             loadMoreView = new LoadMoreView(rv);
             addBottomView(loadMoreView.getContent());
         }
+        setState(SUCCESS);
+
 
     }
 
     @Override
-    public EnViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         if (viewType == BOTTOM) {
-            return new EnViewHolder(bottomView);
+            return new TailViewHolder(bottomView);
 
         } else {
-            return super.onCreateViewHolder(parent, viewType);
+            return super.onCreateViewHolder(parent,viewType);
         }
     }
+
+    @Override
+    protected final void onBind(RecyclerView.ViewHolder holder, int position) {
+
+
+        if ( !(holder instanceof TailRecyAdapter.TailViewHolder)){
+            onContentBind(holder,position);
+        }
+
+    }
+
+    protected abstract void onContentBind(RecyclerView.ViewHolder holder, int position);
 
 
     @Override
@@ -107,43 +130,40 @@ public abstract class TailRecyAdapter<T> extends EnBaseRecyAdapter<T> {
     }
 
     /**
-     * 开始加载
-     */
-    public void startLoad() {
-        loadMoreView.setText("正在加载，请稍后！");
-        loadMoreView.setPbVisibility(View.VISIBLE);
-    }
-
-
-    public void addData(List<T> list, int state) {
-        addAllData(list);
-
-        finishLoad(state);
-    }
-
-
-    /**
-     * 加载结束
+     * 加载操作
      *
      * @param state 状态码
      */
-    public void finishLoad(int state) {
+    public void doLoad(int state) {
         switch (state) {
             case FAIL:
                 loadMoreView.setText("加载失败，点击重新加载！");
+                loadMoreView.setPbVisibility(View.GONE);
+
                 break;
             case SUCCESS:
                 loadMoreView.setText("加载成功！");
+                loadMoreView.setPbVisibility(View.GONE);
+
                 break;
             case NO_DATA:
                 loadMoreView.setText("加载完毕，没有更多数据！");
+                loadMoreView.setPbVisibility(View.GONE);
+
                 break;
             case LOAD:
+                loadMoreView.setText("正在加载，请稍后...");
+                loadMoreView.setPbVisibility(View.VISIBLE);
 
                 break;
         }
-        loadMoreView.setPbVisibility(View.GONE);
     }
 
+
+    private class TailViewHolder extends RecyclerView.ViewHolder {
+        TailViewHolder(View itemView) {
+            super(itemView);
+        }
+    }
 
 }

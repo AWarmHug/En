@@ -1,10 +1,10 @@
-package com.me.en.core.openeye.adapter;
+package com.me.en.core.yixi.adapter;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 
-import com.me.en.core.openeye.view.SelectFragment;
+import com.me.en.core.yixi.view.AlbumFragment;
 
 /**
  * 作者: 51hs_android
@@ -24,7 +24,7 @@ public class MainAdapter extends FragmentStatePagerAdapter {
     @Override
     public Fragment getItem(int position) {
 
-        return SelectFragment.newInstance();
+        return AlbumFragment.newInstance();
     }
 
     @Override

@@ -11,7 +11,7 @@ import java.util.List;
  * 时间: 2017/4/11
  * 简介:
  */
-public abstract class EnBaseRecyAdapter<T> extends RecyclerView.Adapter<EnBaseRecyAdapter.EnViewHolder> {
+public abstract class EnBaseRecyAdapter<T> extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
 
     protected List<T> list;
@@ -68,7 +68,7 @@ public abstract class EnBaseRecyAdapter<T> extends RecyclerView.Adapter<EnBaseRe
     }
 
     @Override
-    public EnBaseRecyAdapter.EnViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
         return onCreate(parent, viewType);//获取资源文件
     }
@@ -78,18 +78,18 @@ public abstract class EnBaseRecyAdapter<T> extends RecyclerView.Adapter<EnBaseRe
      * @param viewType
      * @return 获取layoutId
      */
-    public abstract EnBaseRecyAdapter.EnViewHolder onCreate(ViewGroup parent, int viewType);
+    public abstract RecyclerView.ViewHolder onCreate(ViewGroup parent, int viewType);
 
 
 
     @Override
-    public void onBindViewHolder(EnBaseRecyAdapter.EnViewHolder holder, final int position) {
+    public void onBindViewHolder(RecyclerView.ViewHolder holder, final int position) {
 
         if (tOnItemClickListener != null) {
             holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    tOnItemClickListener.bottomClick();
+                    tOnItemClickListener.itemClick(position,list.get(position));
 
                 }
             });
@@ -97,7 +97,7 @@ public abstract class EnBaseRecyAdapter<T> extends RecyclerView.Adapter<EnBaseRe
         onBind(holder,position);
     }
 
-    protected abstract void onBind(EnBaseRecyAdapter.EnViewHolder holder, int position);
+    protected abstract void onBind(RecyclerView.ViewHolder holder, int position);
 
     @Override
     public int getItemCount() {
@@ -109,14 +109,9 @@ public abstract class EnBaseRecyAdapter<T> extends RecyclerView.Adapter<EnBaseRe
 
     public interface OnItemClickListener<T> {
         void itemClick(int position, T t);
-
-        void bottomClick();
     }
 
 
-    public static class EnViewHolder extends RecyclerView.ViewHolder {
-        public EnViewHolder(View itemView) {
-            super(itemView);
-        }
-    }
+
+
 }

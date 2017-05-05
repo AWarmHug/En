@@ -8,7 +8,7 @@ package com.me.en;
 
 public class Constants {
 
-    public static String BASE_URL="http://baobab.kaiyanapp.com/api/v4/";
+    public static String BASE_URL="http://api.yixi.tv/api/v1/";
 
 
 }

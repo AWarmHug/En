@@ -1,6 +1,6 @@
 package com.me.en.net.Api;
 
-import com.me.en.entity.SelectBean;
+import com.me.en.entity.AlbumBean;
 
 import io.reactivex.Observable;
 import retrofit2.http.GET;
@@ -12,10 +12,10 @@ import retrofit2.http.Path;
  * 简介:首页
  */
 
-public interface SelectedApi {
+public interface YixiApi {
 
-    @GET("tabs/{type}")
-    Observable<SelectBean> getSelect(@Path("type") String type);
+    @GET("{type}")
+    Observable<AlbumBean> getSelect(@Path("type") String type);
 
 
 }

@@ -24,6 +24,7 @@
         app:itemIconTint="@color/bottom_navi_color_select"
         app:itemTextColor="@color/bottom_navi_color_select"
         app:menu="@menu/eye_bottom_menu"
+        android:visibility="gone"
         >
 
     </android.support.design.widget.BottomNavigationView>

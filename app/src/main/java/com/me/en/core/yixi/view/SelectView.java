@@ -1,7 +1,7 @@
-package com.me.en.core.openeye.view;
+package com.me.en.core.yixi.view;
 
 import com.me.en.entity.Error;
-import com.me.en.entity.SelectBean;
+import com.me.en.entity.AlbumBean;
 
 /**
  * 作者: 51hs_android
@@ -11,7 +11,7 @@ import com.me.en.entity.SelectBean;
 
 public interface SelectView {
 
-    void getSelectSuccess(SelectBean selectBean);
+    void getSelectSuccess(AlbumBean albumBean);
     void getSelectFail(Error e);
 
 
