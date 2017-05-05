@@ -5,6 +5,7 @@ import com.me.en.core.yixi.model.LectureModelImpl;
 import com.me.en.core.yixi.view.LectureDetailView;
 import com.me.en.entity.Error;
 import com.me.en.entity.Lecture;
+import com.me.en.entity.Video;
 
 /**
  * 作者: 51hs_android
@@ -36,4 +37,19 @@ public class LectureDetailPresenter {
             }
         });
     }
+
+    public void getLecturePlay(int id,String playId){
+        lectureModel.getLecturePlay(id,playId, new Listener<Video>() {
+            @Override
+            public void success(Video video) {
+
+            }
+
+            @Override
+            public void fail(Error e) {
+
+            }
+        });
+    }
+
 }

@@ -41,7 +41,7 @@
 
     <style name="AppTheme.TextAppearance.Title" parent="TextAppearance.AppCompat.Title">
         <item name="android:textSize">@dimen/title_24sp</item>
-        <item name="android:textColor">@color/dark_text</item>
+        <item name="android:textColor">@color/black</item>
 
     </style>
 
@@ -65,7 +65,7 @@
         <item name="android:textColor">@color/body</item>
     </style>
 
-    <style name="AppTheme.TextAppearance.Other" parent="TextAppearance.AppCompat.Body2">
+    <style name="AppTheme.TextAppearance.Other" parent="TextAppearance.AppCompat.Body1">
         <item name="android:textSize">@dimen/other_12sp</item>
         <item name="android:textColor">@color/other</item>
     </style>
@@ -109,9 +109,6 @@
         <item name="cardElevation">@dimen/cardview_elevation_8dp</item>
 
     </style>
-
-
-
 
 
 </resources>

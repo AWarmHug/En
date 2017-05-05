@@ -2,6 +2,7 @@ package com.me.en.core.yixi.model;
 
 import com.me.en.base.Listener;
 import com.me.en.entity.Lecture;
+import com.me.en.entity.Video;
 
 /**
  * 作者: 51hs_android
@@ -12,5 +13,8 @@ import com.me.en.entity.Lecture;
 public interface LectureModel {
 
     void getLecture(int id,Listener<Lecture> listener);
+
+    void getLecturePlay(int id, String playId,Listener<Video> listener);
+
 
 }
