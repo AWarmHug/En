@@ -1,4 +1,4 @@
-package com.me.en.core.yixi.view;
+package com.me.en.core.yixi.ui;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -9,7 +9,8 @@ import android.view.View;
 import com.me.en.R;
 import com.me.en.base.fragment.LazyFragment;
 import com.me.en.core.yixi.adapter.AlbumDetailAdapter;
-import com.me.en.core.yixi.presenter.SelectPresenter;
+import com.me.en.core.yixi.presenter.AlbumPresenter;
+import com.me.en.core.yixi.view.AlbumView;
 import com.me.en.entity.AlbumBean;
 import com.me.en.entity.Error;
 
@@ -19,10 +20,10 @@ import com.me.en.entity.Error;
  * 简介:
  */
 
-public class AlbumFragment extends LazyFragment implements SelectView {
+public class AlbumFragment extends LazyFragment implements AlbumView {
     private static final String TAG = "AlbumFragment";
 
-    private SelectPresenter selectPresenter;
+    private AlbumPresenter albumPresenter;
 
 
     private Toolbar tb_select;
@@ -60,8 +61,8 @@ public class AlbumFragment extends LazyFragment implements SelectView {
 
     @Override
     protected void doFirstVisible(@Nullable Bundle savedInstanceState) {
-        selectPresenter=new SelectPresenter(this);
-        selectPresenter.getSelect();
+        albumPresenter =new AlbumPresenter(this);
+        albumPresenter.getSelect();
 
     }
 

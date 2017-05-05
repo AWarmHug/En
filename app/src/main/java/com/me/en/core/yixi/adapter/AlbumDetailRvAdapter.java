@@ -77,17 +77,7 @@ public class AlbumDetailRvAdapter extends RecyclerView.Adapter<RecyclerView.View
                 ((SecondViewHolder) holder).tv_nickname.setText(data.getLectures().get(0).getLecturer().getNickname());
                 ((SecondViewHolder) holder).tv_time.setText(data.getLectures().get(0).getCreated_at());
 
-                Glide.with(((SecondViewHolder) holder).itemView.getContext()).load(data.getLectures().get(0).getCover()).centerCrop().crossFade().into(new BaseTarget<GlideDrawable>() {
-                    @Override
-                    public void onResourceReady(GlideDrawable resource, GlideAnimation<? super GlideDrawable> glideAnimation) {
-                        ((SecondViewHolder) holder).cv.setBackground(resource);
-                    }
-
-                    @Override
-                    public void getSize(SizeReadyCallback cb) {
-
-                    }
-                });
+                Glide.with(((SecondViewHolder) holder).itemView.getContext()).load(data.getLectures().get(0).getBackground()).centerCrop().crossFade().into(((SecondViewHolder)holder).iv_cover);
 
                 for (Tag tag : data.getLectures().get(0).getTags()) {
                     ((SecondViewHolder) holder).fl.addView(buildLabel(((SecondViewHolder) holder).itemView.getContext(), tag));
@@ -160,12 +150,13 @@ public class AlbumDetailRvAdapter extends RecyclerView.Adapter<RecyclerView.View
         TextView tv_purecontent, tv_title,tv_desc,tv_nickname,tv_time;
         CardView cv;
         FlowLayout fl;
+        ImageView iv_cover;
 
         public SecondViewHolder(View itemView) {
             super(itemView);
             tv_purecontent = (TextView) itemView.findViewById(R.id.tv_purecontent);
-
             cv = (CardView) itemView.findViewById(R.id.cv);
+            iv_cover= (ImageView) itemView.findViewById(R.id.iv_cover);
             tv_title = (TextView) itemView.findViewById(R.id.tv_title);
             tv_desc= (TextView) itemView.findViewById(R.id.tv_desc);
             tv_nickname= (TextView) itemView.findViewById(R.id.tv_nickname);

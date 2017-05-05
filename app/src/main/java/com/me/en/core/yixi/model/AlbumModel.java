@@ -9,7 +9,7 @@ import com.me.en.entity.AlbumBean;
  * 简介:
  */
 
-public interface SelectModel {
+public interface AlbumModel {
 
      void getSelect(Listener<AlbumBean> listener);
 }

@@ -14,9 +14,7 @@ import java.util.List;
 
 public class AlbumBean {
 
-
     private int res;
-    private List<DataBean> data;
 
     public int getRes() {
         return res;
@@ -25,6 +23,9 @@ public class AlbumBean {
     public void setRes(int res) {
         this.res = res;
     }
+
+    private List<DataBean> data;
+
 
     public List<DataBean> getData() {
         return data;

@@ -4,7 +4,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 
-import com.me.en.core.yixi.view.AlbumDetailFragment;
+import com.me.en.core.yixi.ui.AlbumDetailFragment;
 import com.me.en.entity.AlbumBean;
 
 import java.util.List;

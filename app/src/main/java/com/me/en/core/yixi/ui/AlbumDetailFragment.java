@@ -1,28 +1,17 @@
-package com.me.en.core.yixi.view;
+package com.me.en.core.yixi.ui;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.View;
-import android.view.ViewGroup;
-import android.view.ViewParent;
-import android.widget.FrameLayout;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import com.bumptech.glide.Glide;
 import com.me.en.R;
 import com.me.en.base.fragment.LazyFragment;
 import com.me.en.core.yixi.adapter.AlbumDetailRvAdapter;
 import com.me.en.entity.AlbumBean;
 import com.me.en.entity.Lecture;
 import com.me.en.entity.Tag;
-import com.me.en.utils.PicUtils;
 import com.me.en.widget.recycleview.EnRecycleView;
 
 /**
@@ -88,6 +77,11 @@ public class AlbumDetailFragment extends LazyFragment implements AlbumDetailRvAd
     @Override
     public void clickLookDetail(Lecture lecture) {
 
+        getFragmentManager()
+                .beginTransaction()
+                .add(R.id.fl_lecture_detail,LectureDetailFragment.newInstance(lecture.getId()))
+                .addToBackStack(null)
+                .commit();
     }
 
     @Override

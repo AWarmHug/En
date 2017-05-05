@@ -20,6 +20,7 @@ public class Lecture implements Parcelable {
     private String viewnum;
     private String likenum;
     private String cmtnum;
+    private String purecontent;
     private String cover;
     private String background;
     private String video;
@@ -79,6 +80,14 @@ public class Lecture implements Parcelable {
 
     public void setLikenum(String likenum) {
         this.likenum = likenum;
+    }
+
+    public String getPurecontent() {
+        return purecontent;
+    }
+
+    public void setPurecontent(String purecontent) {
+        this.purecontent = purecontent;
     }
 
     public String getCmtnum() {
@@ -186,6 +195,9 @@ public class Lecture implements Parcelable {
     }
 
 
+    public Lecture() {
+    }
+
     @Override
     public int describeContents() {
         return 0;
@@ -200,6 +212,7 @@ public class Lecture implements Parcelable {
         dest.writeString(this.viewnum);
         dest.writeString(this.likenum);
         dest.writeString(this.cmtnum);
+        dest.writeString(this.purecontent);
         dest.writeString(this.cover);
         dest.writeString(this.background);
         dest.writeString(this.video);
@@ -211,10 +224,7 @@ public class Lecture implements Parcelable {
         dest.writeString(this.created_at);
         dest.writeParcelable(this.lecturer, flags);
         dest.writeParcelable(this.category, flags);
-        dest.writeList(this.tags);
-    }
-
-    public Lecture() {
+        dest.writeTypedList(this.tags);
     }
 
     protected Lecture(Parcel in) {
@@ -225,6 +235,7 @@ public class Lecture implements Parcelable {
         this.viewnum = in.readString();
         this.likenum = in.readString();
         this.cmtnum = in.readString();
+        this.purecontent = in.readString();
         this.cover = in.readString();
         this.background = in.readString();
         this.video = in.readString();
@@ -236,11 +247,10 @@ public class Lecture implements Parcelable {
         this.created_at = in.readString();
         this.lecturer = in.readParcelable(Lecturer.class.getClassLoader());
         this.category = in.readParcelable(Category.class.getClassLoader());
-        this.tags = new ArrayList<Tag>();
-        in.readList(this.tags, Tag.class.getClassLoader());
+        this.tags = in.createTypedArrayList(Tag.CREATOR);
     }
 
-    public static final Parcelable.Creator<Lecture> CREATOR = new Parcelable.Creator<Lecture>() {
+    public static final Creator<Lecture> CREATOR = new Creator<Lecture>() {
         @Override
         public Lecture createFromParcel(Parcel source) {
             return new Lecture(source);

@@ -1,4 +1,4 @@
-package com.me.en.core.yixi.view;
+package com.me.en.core.yixi.ui;
 
 /**
  * 作者: 51hs_android

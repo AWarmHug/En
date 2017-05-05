@@ -1,16 +1,11 @@
 package com.me.en.core;
 
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.design.widget.BottomNavigationView;
-import android.support.v4.view.ViewPager;
-import android.view.MenuItem;
 import android.widget.RelativeLayout;
 
 import com.me.en.R;
 import com.me.en.base.activity.BaseActivity;
-import com.me.en.core.yixi.adapter.MainAdapter;
-import com.me.en.core.yixi.view.AlbumFragment;
+import com.me.en.core.yixi.ui.AlbumFragment;
 
 
 public class MainActivity extends BaseActivity {

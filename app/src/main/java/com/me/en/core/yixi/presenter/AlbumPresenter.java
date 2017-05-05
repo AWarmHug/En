@@ -1,8 +1,8 @@
 package com.me.en.core.yixi.presenter;
 
 import com.me.en.base.Listener;
-import com.me.en.core.yixi.model.SelectModelImpl;
-import com.me.en.core.yixi.view.SelectView;
+import com.me.en.core.yixi.model.AlbumModelImpl;
+import com.me.en.core.yixi.view.AlbumView;
 import com.me.en.entity.Error;
 import com.me.en.entity.AlbumBean;
 
@@ -12,14 +12,14 @@ import com.me.en.entity.AlbumBean;
  * 简介:
  */
 
-public class SelectPresenter {
+public class AlbumPresenter {
 
-    private SelectView selectView;
-    private SelectModelImpl selectModel;
+    private AlbumView albumView;
+    private AlbumModelImpl selectModel;
 
-    public SelectPresenter(SelectView selectView) {
-        this.selectView = selectView;
-        this.selectModel=new SelectModelImpl();
+    public AlbumPresenter(AlbumView albumView) {
+        this.albumView = albumView;
+        this.selectModel=new AlbumModelImpl();
 
     }
 
@@ -28,12 +28,12 @@ public class SelectPresenter {
         selectModel.getSelect(new Listener<AlbumBean>() {
             @Override
             public void success(AlbumBean albumBean) {
-                selectView.getSelectSuccess(albumBean);
+                albumView.getSelectSuccess(albumBean);
             }
 
             @Override
             public void fail(Error e) {
-                selectView.getSelectFail(e);
+                albumView.getSelectFail(e);
             }
         });
     }
