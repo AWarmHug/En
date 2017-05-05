@@ -14,12 +14,15 @@
     <dimen name="text_size">16sp</dimen>
     <dimen name="fab_margin">16dp</dimen>
 
-    <dimen name="title_18sp">18sp</dimen>
-    <dimen name="title_28sp">28sp</dimen>
+    <dimen name="title_24sp">24sp</dimen>
+    <dimen name="title_30sp">30sp</dimen>
 
-    <dimen name="body_12sp">12sp</dimen>
-    <dimen name="name_16sp">16sp</dimen>
-    <dimen name="other_12sp">12sp</dimen>
+
+    <dimen name="body_16sp">16sp</dimen>
+    <dimen name="body_24sp">24sp</dimen>
+
+    <dimen name="name_16sp">18sp</dimen>
+    <dimen name="other_12sp">16sp</dimen>
 
     <dimen name="toolbar_height_56dp">56dp</dimen>
     <dimen name="toolbar_elevation_12dp">12dp</dimen>

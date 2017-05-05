@@ -4,7 +4,6 @@
     android:id="@+id/cv"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    style="@style/AppTheme.CardView.Album"
     app:contentPaddingLeft="@dimen/left_right_margin_16dp"
     app:contentPaddingRight="@dimen/left_right_margin_16dp"
     app:contentPaddingTop="@dimen/top_bottom_margin_8dp"

@@ -6,27 +6,20 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.me.en.core.MainActivity">
-
-    <android.support.v4.view.ViewPager
-        android:id="@+id/vp_main"
+    <android.support.v7.widget.Toolbar
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_above="@+id/bottom_main">
-    </android.support.v4.view.ViewPager>
-
-
-    <android.support.design.widget.BottomNavigationView
-        android:id="@+id/bottom_main"
-        style="@style/AppTheme.BottomNavigationView"
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:layout_alignParentBottom="true"
-        app:itemIconTint="@color/bottom_navi_color_select"
-        app:itemTextColor="@color/bottom_navi_color_select"
-        app:menu="@menu/eye_bottom_menu"
-        android:visibility="gone"
+        android:layout_height="wrap_content"
+        android:background="@color/transparent"
+        android:fitsSystemWindows="true"
         >
 
-    </android.support.design.widget.BottomNavigationView>
+    </android.support.v7.widget.Toolbar>
+
+    <FrameLayout
+        android:id="@+id/frame"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </FrameLayout>
 
 </RelativeLayout>

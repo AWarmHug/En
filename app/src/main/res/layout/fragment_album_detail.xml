@@ -1,62 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
 
     >
 
-    <LinearLayout
 
+
+    <com.me.en.widget.recycleview.EnRecycleView
+        android:id="@+id/rv_detail"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/album_bg"
         android:orientation="vertical">
 
-        <RelativeLayout
-            android:id="@+id/rl"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
 
 
-            <ImageView
-                android:id="@+id/iv_background"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-
-                />
+    </com.me.en.widget.recycleview.EnRecycleView>
 
 
-            <TextView
-                android:id="@+id/tv_title"
-                style="@style/AppTheme.TextAppearance.Title.BIG"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="茅明睿「数据与城市正义」"
-
-                />
-
-
-            <TextView
-                android:id="@+id/tv_desc"
-                style="@style/AppTheme.TextAppearance.Body"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/tv_title"
-                android:layout_marginTop="@dimen/top_bottom_margin_8dp"
-                android:text="我们自发地在开展一些寻求城市正义的实践，但是仅靠我们自己，是没有力量跟公权力、跟开发商、跟市场的资本去博弈的，因为我们缺乏盟友。这些盟友是谁？就是在座的各位，是我们的市民。"
-
-                />
-
-
-        </RelativeLayout>
-
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:src="@mipmap/ic_launcher" />
-
-
-    </LinearLayout>
-
-
-</android.support.v4.widget.NestedScrollView>
+</LinearLayout>

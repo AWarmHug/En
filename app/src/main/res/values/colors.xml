@@ -11,6 +11,9 @@
     <color name="grey_50">#7bf7f7f7</color>
 
     <color name="dark_text">#666666</color>
+    <color name="transparent">#00000000</color>
+
+    <color name="album_bg">#000000</color>
 
     <color name="title">#000000</color>
     <color name="body">#3e3e3e</color>

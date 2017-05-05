@@ -40,15 +40,14 @@
     </style>
 
     <style name="AppTheme.TextAppearance.Title" parent="TextAppearance.AppCompat.Title">
-        <item name="android:textSize">@dimen/title_18sp</item>
+        <item name="android:textSize">@dimen/title_24sp</item>
         <item name="android:textColor">@color/dark_text</item>
 
     </style>
 
-    <style name="AppTheme.TextAppearance.Title.BIG" parent="TextAppearance.AppCompat.Title">
-        <item name="android:textSize">@dimen/title_28sp</item>
+    <style name="AppTheme.TextAppearance.Title.BIG" >
+        <item name="android:textSize">@dimen/title_30sp</item>
         <item name="android:textColor">@color/dark_text</item>
-
     </style>
 
     <style name="AppTheme.TextAppearance.Name" parent="TextAppearance.AppCompat.Title">
@@ -57,7 +56,12 @@
     </style>
 
     <style name="AppTheme.TextAppearance.Body" parent="TextAppearance.AppCompat.Body1">
-        <item name="android:textSize">@dimen/body_12sp</item>
+        <item name="android:textSize">@dimen/body_16sp</item>
+        <item name="android:textColor">@color/body</item>
+    </style>
+
+    <style name="AppTheme.TextAppearance.Body.Big">
+        <item name="android:textSize">@dimen/body_24sp</item>
         <item name="android:textColor">@color/body</item>
     </style>
 
@@ -77,16 +81,35 @@
 
     </style>
 
+    <!--Album相关主题-->
+
+    <style name="AppTheme.TextAppearance.Album">
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="AppTheme.TextAppearance.Album.Title" parent="AppTheme.TextAppearance.Title">
+
+        <item name="android:textSize">@dimen/title_30sp</item>
+        <item name="android:textColor">@color/white</item>
+
+    </style>
+
+    <style name="AppTheme.TextAppearance.Album.Body" parent="AppTheme.TextAppearance.Body">
+        <item name="android:textSize">@dimen/body_16sp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:lineSpacingMultiplier">1.2</item>
+
+
+    </style>
+
+
+
 
     <style name="AppTheme.CardView" parent="CardView">
         <item name="cardElevation">@dimen/cardview_elevation_8dp</item>
 
     </style>
 
-    <style name="AppTheme.CardView.Album">
-        <item name="cardCornerRadius">@dimen/cardview_default_radius</item>
-
-    </style>
 
 
 

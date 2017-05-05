@@ -47,14 +47,11 @@ public class RetrofitHelper {
                     Cache cache = new Cache(new File(App.getInstance()
                             .getExternalCacheDir(), "HttpCache"), 1024 * 1024 * 10);
 
-                    Log.d("cache", "initOkHttpClient: "+cache.directory().getPath());
 
                     mOkHttpClient = new OkHttpClient.Builder()
                             .cache(cache)
                             .addInterceptor(interceptor)
-                            .addInterceptor(new CacheInterceptor())
-
-//                            .addNetworkInterceptor(new CacheInterceptor())
+                            .addNetworkInterceptor(new CacheInterceptor())
                             .retryOnConnectionFailure(true)
                             .connectTimeout(30, TimeUnit.SECONDS)
                             .writeTimeout(20, TimeUnit.SECONDS)
@@ -82,7 +79,7 @@ public class RetrofitHelper {
         public Response intercept(Chain chain) throws IOException {
 
             // 有网络时 设置缓存超时时间1个小时
-            int maxAge = 60 * 60;
+            int maxAge = 60*60;
             // 无网络时，设置超时为1天
             int maxStale = 60 * 60 * 24;
             Request request = chain.request();
@@ -103,9 +100,11 @@ public class RetrofitHelper {
 //                Toast.makeText(App.getInstance(), "没有网络", Toast.LENGTH_SHORT).show();
             }
             Response response = chain.proceed(request);
+
             if (NetUtil.isNetworkAvailable(App.getInstance())) {
                 response = response.newBuilder()
                         .removeHeader("Pragma")
+//                        .header("User-Agent", "YIXIProject/1.2 ( picsize=iphone6+ ; android 6.0; Scale/2.625)")
                         .header("Cache-Control", "public ,max-age=" + maxAge)
                         .build();
             } else {
@@ -118,41 +117,13 @@ public class RetrofitHelper {
         }
     }
 
-    static Interceptor cacheInterceptor2 = new Interceptor() {
-        @Override
-        public Response intercept(Chain chain) throws IOException {
-            Request request = chain.request();
-            if (!NetUtil.isNetworkAvailable(App.getInstance())) {
-                request = request.newBuilder()
-                        .cacheControl(CacheControl.FORCE_CACHE)
-                        /*.url(request.url())*/.build();
-//                UIUtils.showToastSafe("暂无网络");//子线程安全显示Toast
-            }
-
-            Response response = chain.proceed(request);
-            if (NetUtil.isNetworkAvailable(App.getInstance())) {
-                int maxAge = 60 * 60; // read from cache for 1 minute
-                response.newBuilder()
-                        .removeHeader("Pragma")
-                        .header("Cache-Control", "public, max-age=" + maxAge)
-                        .build();
-            } else {
-                int maxStale = 60 * 60 * 24 * 28; // tolerate 4-weeks stale
-                response.newBuilder()
-                        .removeHeader("Pragma")
-                        .header("Cache-Control", "public, only-if-cached, max-stale=" + maxStale)
-                        .build();
-            }
-            return response;
-        }
-    };
 
 
     public static <T> T getApi(Class<T> cla) {
         return retrofit.create(cla);
     }
 
-    public static YixiApi getSelApi(){
+    public static YixiApi getSelApi() {
         return retrofit.create(YixiApi.class);
     }
 

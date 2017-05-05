@@ -49,6 +49,7 @@ public class AlbumFragment extends LazyFragment implements SelectView {
     protected void initView(View view, Bundle savedInstanceState) {
         tb_select= (Toolbar) view.findViewById(R.id.tb_select);
         vp= (ViewPager) view.findViewById(R.id.vp);
+        setUserVisibleHint(true);
 
     }
 
@@ -71,7 +72,7 @@ public class AlbumFragment extends LazyFragment implements SelectView {
 
     @Override
     public void getSelectSuccess(AlbumBean albumBean) {
-        AlbumDetailAdapter adapter=new AlbumDetailAdapter(getChildFragmentManager(),albumBean.getData());
+        AlbumDetailAdapter adapter=new AlbumDetailAdapter(getFragmentManager(),albumBean.getData());
         vp.setAdapter(adapter);
 
 
