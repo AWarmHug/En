@@ -1,7 +1,5 @@
 package com.me.en.core.yixi.model;
 
-import android.util.Log;
-
 import com.me.en.base.Listener;
 import com.me.en.entity.Base;
 import com.me.en.entity.Error;
@@ -55,7 +53,7 @@ public class LectureModelImpl implements LectureModel {
     }
 
     @Override
-    public void getLecturePlay(int id, final String playId , Listener<Video> listener) {
+    public void getLecturePlay(int id, final String playId , final Listener<Video> listener) {
 
         RetrofitHelper.getApi(YixiApi.class).getLecturePlayed(id)
                 .flatMap(new Function<Base, ObservableSource<Video>>() {
@@ -74,12 +72,13 @@ public class LectureModelImpl implements LectureModel {
 
                     @Override
                     public void onNext(@NonNull Video video) {
-                        Log.d("okhttp", "onNext: "+video.getSid());
+                        listener.success(video);
 
                     }
 
                     @Override
                     public void onError(@NonNull Throwable e) {
+                        listener.fail(new Error(-1,e.getMessage()));
 
                     }
 

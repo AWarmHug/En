@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -14,7 +15,7 @@ import android.view.ViewGroup;
  * 简介:
  */
 
-public abstract class GodFragment extends Fragment {
+public abstract class GodFragment extends Fragment implements View.OnTouchListener{
 
 
     @Override
@@ -27,6 +28,7 @@ public abstract class GodFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(getLayout(), container, false);
+        view.setOnTouchListener(this);
         initView(view,savedInstanceState);
 
         return view;
@@ -55,5 +57,13 @@ public abstract class GodFragment extends Fragment {
             }
         }
         return statusBarHeight;
+    }
+
+    @Override
+    public boolean onTouch(View v, MotionEvent event) {
+        if (v==getView()){
+            return true;
+        }
+        return false;
     }
 }

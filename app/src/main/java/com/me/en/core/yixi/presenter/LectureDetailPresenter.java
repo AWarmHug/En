@@ -42,6 +42,7 @@ public class LectureDetailPresenter {
         lectureModel.getLecturePlay(id,playId, new Listener<Video>() {
             @Override
             public void success(Video video) {
+                lectureDetailView.getLecturePlaySuccess(video);
 
             }
 

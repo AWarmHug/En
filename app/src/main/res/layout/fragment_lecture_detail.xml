@@ -124,10 +124,17 @@
         </LinearLayout>
     </android.support.v4.widget.NestedScrollView>
 
+
     <android.support.v7.widget.Toolbar
         style="@style/AppTheme.ToolBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"></android.support.v7.widget.Toolbar>
 
 
+    <FrameLayout
+        android:id="@+id/fl_play"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </FrameLayout>
 </RelativeLayout>

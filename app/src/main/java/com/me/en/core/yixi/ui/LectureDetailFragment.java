@@ -2,19 +2,19 @@ package com.me.en.core.yixi.ui;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.me.en.R;
 import com.me.en.base.fragment.BaseFragment;
 import com.me.en.core.yixi.presenter.LectureDetailPresenter;
 import com.me.en.core.yixi.view.LectureDetailView;
-import com.me.en.entity.Base;
 import com.me.en.entity.Error;
 import com.me.en.entity.Lecture;
+import com.me.en.entity.Video;
 import com.me.en.widget.glide.GlideCircleTransform;
 
 /**
@@ -23,7 +23,7 @@ import com.me.en.widget.glide.GlideCircleTransform;
  * 简介:
  */
 
-public class LectureDetailFragment extends BaseFragment implements LectureDetailView,View.OnTouchListener{
+public class LectureDetailFragment extends BaseFragment implements LectureDetailView{
 
     private LectureDetailPresenter presenter;
 
@@ -49,7 +49,6 @@ public class LectureDetailFragment extends BaseFragment implements LectureDetail
 
     @Override
     protected void initView(View view, Bundle savedInstanceState) {
-//        view.setOnTouchListener(this);
 
         iv_background= (ImageView) view.findViewById(R.id.iv_background);
         iv_lecturer_header= (ImageView) view.findViewById(R.id.iv_lecturer_header);
@@ -107,15 +106,20 @@ public class LectureDetailFragment extends BaseFragment implements LectureDetail
     @Override
     public void getLectureDetailFail(Error e) {
 
-    }
-
-    @Override
-    public void getLecturePlaySuccess(Base base) {
 
     }
 
     @Override
-    public boolean onTouch(View v, MotionEvent event) {
-        return true;
+    public void getLecturePlaySuccess(Video video) {
+        Toast.makeText(getContext(), "获取视频成功!", Toast.LENGTH_SHORT).show();
+        getFragmentManager()
+                .beginTransaction()
+                .add(R.id.fl_play,VideoPlayFragment.newInstance(video.getFiles().get_$3gphd().getSegs().get(0).getUrl()))
+                .addToBackStack(null)
+                .commit();
+
+
     }
+
+
 }
