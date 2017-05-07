@@ -5,7 +5,7 @@ import android.util.Log;
 import com.me.en.base.Listener;
 import com.me.en.entity.Error;
 import com.me.en.entity.AlbumBean;
-import com.me.en.net.Api.YixiApi;
+import com.me.en.net.api.YixiApi;
 import com.me.en.net.RetrofitHelper;
 
 import io.reactivex.Observer;
@@ -37,22 +37,21 @@ public class AlbumModelImpl implements AlbumModel {
 
                     @Override
                     public void onNext(@NonNull AlbumBean albumBean) {
-                        Log.d(TAG, "onNext: "+Thread.currentThread().getName());
+                        Log.d(TAG, "onNext: " + Thread.currentThread().getName());
                         listener.success(albumBean);
 
                     }
 
                     @Override
                     public void onError(@NonNull Throwable e) {
-                        Log.d(TAG, "onError: "+e.getMessage());
-                        listener.fail(new Error(0,e.getMessage()));
+                        Log.d(TAG, "onError: " + e.getMessage());
+                        listener.fail(new Error(0, e.getMessage()));
 
                     }
 
                     @Override
                     public void onComplete() {
-                        Log.d(TAG, "onNext: "+Thread.currentThread().getName());
-
+                        Log.d(TAG, "onNext: " + Thread.currentThread().getName());
 
 
                     }

@@ -9,7 +9,7 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.me.en.R;
-import com.me.en.base.fragment.BaseFragment;
+import com.me.en.base.fragment.LazyFragment;
 import com.me.en.core.yixi.presenter.LectureDetailPresenter;
 import com.me.en.core.yixi.view.LectureDetailView;
 import com.me.en.entity.Error;
@@ -23,13 +23,13 @@ import com.me.en.widget.glide.GlideCircleTransform;
  * 简介:
  */
 
-public class LectureDetailFragment extends BaseFragment implements LectureDetailView{
+public class LectureDetailFragment extends LazyFragment implements LectureDetailView{
 
     private LectureDetailPresenter presenter;
 
     private int id;
 
-    private TextView  tv_purecontent, tv_lecturer_name,tv_lecturer_desc,tv_title,tv_site_time,tv_desc;
+    private TextView  tv_purecontent, tv_lecturer_name,tv_lecturer_desc,tv_title,tv_site_time,tv_desc,tv_toArticle;
     private ImageView iv_background,iv_lecturer_header,iv_play;
 
     public static LectureDetailFragment newInstance(int id) {
@@ -58,7 +58,7 @@ public class LectureDetailFragment extends BaseFragment implements LectureDetail
         tv_site_time= (TextView) view.findViewById(R.id.tv_site_time);
         tv_desc= (TextView) view.findViewById(R.id.tv_desc);
         iv_play= (ImageView) view.findViewById(R.id.iv_play);
-
+        tv_toArticle= (TextView) view.findViewById(R.id.tv_toArticle);
 
         tv_purecontent= (TextView) view.findViewById(R.id.tv_purecontent);
 
@@ -69,13 +69,24 @@ public class LectureDetailFragment extends BaseFragment implements LectureDetail
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+    }
 
+    @Override
+    protected void doInVisible(@Nullable Bundle savedInstanceState) {
+
+    }
+
+    @Override
+    protected void doFirstVisible(@Nullable Bundle savedInstanceState) {
         id=getArguments().getInt("id",0);
 
         presenter=new LectureDetailPresenter(this);
 
         presenter.getLecture(id);
+    }
 
+    @Override
+    protected void doVisible(@Nullable Bundle savedInstanceState) {
 
     }
 
@@ -96,7 +107,16 @@ public class LectureDetailFragment extends BaseFragment implements LectureDetail
                 presenter.getLecturePlay(lecture.getId(),lecture.getVideo());
             }
         });
-
+        tv_toArticle.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getParentFragment().getFragmentManager()
+                        .beginTransaction()
+                        .add(R.id.fl_play,ArticleFragment.newInstance(lecture))
+                        .addToBackStack(null)
+                        .commit();
+            }
+        });
 
 
         tv_purecontent.setText(lecture.getPurecontent().substring(0,200));
@@ -112,7 +132,7 @@ public class LectureDetailFragment extends BaseFragment implements LectureDetail
     @Override
     public void getLecturePlaySuccess(Video video) {
         Toast.makeText(getContext(), "获取视频成功!", Toast.LENGTH_SHORT).show();
-        getFragmentManager()
+        getParentFragment().getFragmentManager()
                 .beginTransaction()
                 .add(R.id.fl_play,VideoPlayFragment.newInstance(video.getFiles().get_$3gphd().getSegs().get(0).getUrl()))
                 .addToBackStack(null)
@@ -120,6 +140,7 @@ public class LectureDetailFragment extends BaseFragment implements LectureDetail
 
 
     }
+
 
 
 }

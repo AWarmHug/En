@@ -4,7 +4,7 @@ import android.util.Log;
 
 import com.me.en.App;
 import com.me.en.Constants;
-import com.me.en.net.Api.YixiApi;
+import com.me.en.net.api.YixiApi;
 import com.me.en.utils.NetUtil;
 
 import java.io.File;
@@ -100,6 +100,8 @@ public class RetrofitHelper {
 //                Toast.makeText(App.getInstance(), "没有网络", Toast.LENGTH_SHORT).show();
             }
             Response response = chain.proceed(request);
+
+            response.header("User-Agent", "YIXIProject/1.2 ( picsize=iphone6+ ; android 6.0; Scale/2.625)");
 
             if (NetUtil.isNetworkAvailable(App.getInstance())) {
                 response = response.newBuilder()

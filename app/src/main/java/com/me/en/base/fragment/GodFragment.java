@@ -30,7 +30,7 @@ public abstract class GodFragment extends Fragment implements View.OnTouchListen
         View view = inflater.inflate(getLayout(), container, false);
         view.setOnTouchListener(this);
         initView(view,savedInstanceState);
-
+        view.setBackground(getActivity().getWindow().getDecorView().getBackground());
         return view;
     }
     protected abstract int getLayout();

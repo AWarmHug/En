@@ -79,7 +79,7 @@ public class AlbumDetailFragment extends LazyFragment implements AlbumDetailRvAd
 
         getFragmentManager()
                 .beginTransaction()
-                .add(R.id.fl_lecture_detail,LectureDetailFragment.newInstance(lecture.getId()))
+                .add(R.id.fl_lecture_detail,LectureFragment.newInstance(lecture.getId()))
                 .addToBackStack(null)
                 .commit();
     }

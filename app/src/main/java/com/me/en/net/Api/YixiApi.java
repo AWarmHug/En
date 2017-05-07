@@ -1,4 +1,4 @@
-package com.me.en.net.Api;
+package com.me.en.net.api;
 
 import com.me.en.entity.AlbumBean;
 import com.me.en.entity.Base;
@@ -34,6 +34,5 @@ public interface YixiApi {
 
     @GET
     Observable<Video> getPlay(@Url String url, @Query("id") String id);
-
 
 }

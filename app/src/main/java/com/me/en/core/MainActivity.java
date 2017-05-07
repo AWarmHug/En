@@ -1,6 +1,8 @@
 package com.me.en.core;
 
+import android.content.res.Configuration;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.RelativeLayout;
 
 import com.me.en.R;
@@ -28,5 +30,10 @@ public class MainActivity extends BaseActivity {
 
     }
 
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        Log.d(TAG, "onConfigurationChanged");
+        super.onConfigurationChanged(newConfig);
+    }
 
 }

@@ -5,7 +5,7 @@ import com.me.en.entity.Base;
 import com.me.en.entity.Error;
 import com.me.en.entity.Lecture;
 import com.me.en.entity.Video;
-import com.me.en.net.Api.YixiApi;
+import com.me.en.net.api.YixiApi;
 import com.me.en.net.RetrofitHelper;
 
 import io.reactivex.ObservableSource;

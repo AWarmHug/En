@@ -1,22 +1,24 @@
 package com.me.en.core.yixi.ui;
 
+import android.content.res.Configuration;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.view.View;
-import android.widget.MediaController;
-import android.widget.VideoView;
 
 import com.me.en.R;
 import com.me.en.base.fragment.BaseFragment;
+import com.me.en.widget.envideoplayer.widget.EnVideoPlayer;
 
 /**
  * Created by warm on 17/5/6.
  */
 
 public class VideoPlayFragment extends BaseFragment {
+    private static final String TAG = "VideoPlayFragment";
 
-    private VideoView vv;
+    private EnVideoPlayer evp;
 
     public static VideoPlayFragment newInstance(String url) {
 
@@ -34,7 +36,7 @@ public class VideoPlayFragment extends BaseFragment {
 
     @Override
     protected void initView(View view, Bundle savedInstanceState) {
-        vv= (VideoView) view.findViewById(R.id.vv);
+        evp = (EnVideoPlayer) view.findViewById(R.id.evp);
     }
 
 
@@ -42,14 +44,16 @@ public class VideoPlayFragment extends BaseFragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        vv.setMediaController(new MediaController(getContext()));
-
-        vv.setVideoURI(Uri.parse(getArguments().getString("url")));
+        evp.setVideoURI(Uri.parse(getArguments().getString("url")));
 
 
-        vv.start();
+        evp.start();
 
     }
 
-
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        Log.d(TAG, "onConfigurationChanged: ");
+    }
 }

@@ -76,8 +76,6 @@ public class AlbumFragment extends LazyFragment implements AlbumView {
         AlbumDetailAdapter adapter=new AlbumDetailAdapter(getFragmentManager(),albumBean.getData());
         vp.setAdapter(adapter);
 
-
-
     }
 
     @Override
