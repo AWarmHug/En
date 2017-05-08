@@ -2,9 +2,13 @@ package com.me.en.net.api;
 
 import com.me.en.entity.AlbumBean;
 import com.me.en.entity.Base;
+import com.me.en.entity.Comment;
 import com.me.en.entity.Lecture;
 import com.me.en.entity.Video;
 
+import java.util.List;
+
+import io.reactivex.Flowable;
 import io.reactivex.Observable;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
@@ -34,5 +38,14 @@ public interface YixiApi {
 
     @GET
     Observable<Video> getPlay(@Url String url, @Query("id") String id);
+
+    @GET("{type}/comments/{id}/page/{page}")
+    Observable<Base<List<Comment>>> getComments(@Path("type") String type,@Path("id") int id,@Path("page") int page);
+
+    @GET("{type}/comments/{id}/page/{page}")
+    Flowable<Base<List<Comment>>> getComments2(@Path("type") String type,@Path("id") int id,@Path("page") int page);
+
+
+
 
 }

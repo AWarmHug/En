@@ -58,12 +58,10 @@ public class AlbumDetailFragment extends LazyFragment implements AlbumDetailRvAd
     @Override
     protected void doFirstVisible(@Nullable Bundle savedInstanceState) {
         data = getArguments().getParcelable("data");
-        AlbumDetailRvAdapter adapter=new AlbumDetailRvAdapter(data);
+        AlbumDetailRvAdapter adapter = new AlbumDetailRvAdapter(data);
         rv_detail.setAdapter(adapter);
         rv_detail.setLayoutManager(new LinearLayoutManager(getContext()));
         adapter.setOnAlbumDetailClickListener(this);
-
-
 
 
     }
@@ -77,9 +75,13 @@ public class AlbumDetailFragment extends LazyFragment implements AlbumDetailRvAd
     @Override
     public void clickLookDetail(Lecture lecture) {
 
+        LectureFragment lectureFragment = LectureFragment.newInstance(lecture.getId());
+
+
         getFragmentManager()
                 .beginTransaction()
-                .add(R.id.fl_lecture_detail,LectureFragment.newInstance(lecture.getId()))
+                .setCustomAnimations(R.anim.activity_new_in,R.anim.activity_new_out,R.anim.activity_old_in,R.anim.activity_old_out)
+                .add(R.id.rl_album, lectureFragment)
                 .addToBackStack(null)
                 .commit();
     }

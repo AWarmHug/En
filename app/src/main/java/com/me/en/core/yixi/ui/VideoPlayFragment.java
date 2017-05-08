@@ -36,6 +36,8 @@ public class VideoPlayFragment extends BaseFragment {
 
     @Override
     protected void initView(View view, Bundle savedInstanceState) {
+        view.setBackground(getActivity().getWindow().getDecorView().getBackground());
+
         evp = (EnVideoPlayer) view.findViewById(R.id.evp);
     }
 

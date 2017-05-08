@@ -133,6 +133,8 @@ public class EnVideoPlayer extends RelativeLayout implements EnPlayController.Pl
 
     private void resetTime() {
         stopTime();
+
+
         mTimer = new Timer();
 
         mTimerTask = new TimerTask() {

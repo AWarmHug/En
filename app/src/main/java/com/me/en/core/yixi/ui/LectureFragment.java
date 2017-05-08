@@ -22,12 +22,11 @@ public class LectureFragment extends BaseFragment {
     public static LectureFragment newInstance(int id) {
 
         Bundle args = new Bundle();
-        args.putInt("id",id);
+        args.putInt("id", id);
         LectureFragment fragment = new LectureFragment();
         fragment.setArguments(args);
         return fragment;
     }
-
     @Override
     protected int getLayout() {
         return R.layout.fragment_lecture;
@@ -35,16 +34,15 @@ public class LectureFragment extends BaseFragment {
 
     @Override
     protected void initView(View view, Bundle savedInstanceState) {
-        vp= (ViewPager) view.findViewById(R.id.vp);
+        vp = (ViewPager) view.findViewById(R.id.vp);
     }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        id=getArguments().getInt("id");
-        LectureVpAdapter adapter=new LectureVpAdapter(getChildFragmentManager(),id);
+        id = getArguments().getInt("id");
+        LectureVpAdapter adapter = new LectureVpAdapter(getChildFragmentManager(), id);
         vp.setAdapter(adapter);
-
     }
 
 }

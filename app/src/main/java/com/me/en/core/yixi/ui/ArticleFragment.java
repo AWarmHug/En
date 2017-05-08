@@ -38,6 +38,9 @@ public class ArticleFragment extends BaseFragment {
 
     @Override
     protected void initView(View view, Bundle savedInstanceState) {
+
+        view.setBackground(getActivity().getWindow().getDecorView().getBackground());
+
         tv_title= (TextView) view.findViewById(R.id.tv_title);
         tv_name= (TextView) view.findViewById(R.id.tv_name);
 

@@ -75,6 +75,7 @@ public class AlbumFragment extends LazyFragment implements AlbumView {
     public void getSelectSuccess(AlbumBean albumBean) {
         AlbumDetailAdapter adapter=new AlbumDetailAdapter(getFragmentManager(),albumBean.getData());
         vp.setAdapter(adapter);
+        vp.setOffscreenPageLimit(albumBean.getData().size());
 
     }
 

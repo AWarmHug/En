@@ -3,4 +3,11 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <com.me.en.widget.recycleview.EnRecycleView
+        android:id="@+id/rv_comments"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </com.me.en.widget.recycleview.EnRecycleView>
+
 </LinearLayout>

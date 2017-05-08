@@ -49,6 +49,7 @@ public class LectureDetailFragment extends LazyFragment implements LectureDetail
 
     @Override
     protected void initView(View view, Bundle savedInstanceState) {
+        view.setBackground(getActivity().getWindow().getDecorView().getBackground());
 
         iv_background= (ImageView) view.findViewById(R.id.iv_background);
         iv_lecturer_header= (ImageView) view.findViewById(R.id.iv_lecturer_header);
@@ -59,9 +60,7 @@ public class LectureDetailFragment extends LazyFragment implements LectureDetail
         tv_desc= (TextView) view.findViewById(R.id.tv_desc);
         iv_play= (ImageView) view.findViewById(R.id.iv_play);
         tv_toArticle= (TextView) view.findViewById(R.id.tv_toArticle);
-
         tv_purecontent= (TextView) view.findViewById(R.id.tv_purecontent);
-
 
     }
 
@@ -79,9 +78,7 @@ public class LectureDetailFragment extends LazyFragment implements LectureDetail
     @Override
     protected void doFirstVisible(@Nullable Bundle savedInstanceState) {
         id=getArguments().getInt("id",0);
-
         presenter=new LectureDetailPresenter(this);
-
         presenter.getLecture(id);
     }
 
@@ -112,7 +109,8 @@ public class LectureDetailFragment extends LazyFragment implements LectureDetail
             public void onClick(View v) {
                 getParentFragment().getFragmentManager()
                         .beginTransaction()
-                        .add(R.id.fl_play,ArticleFragment.newInstance(lecture))
+                        .setCustomAnimations(R.anim.activity_new_in,R.anim.activity_new_out,R.anim.activity_old_in,R.anim.activity_old_out)
+                        .add(R.id.fl_lecture,ArticleFragment.newInstance(lecture))
                         .addToBackStack(null)
                         .commit();
             }
@@ -134,7 +132,8 @@ public class LectureDetailFragment extends LazyFragment implements LectureDetail
         Toast.makeText(getContext(), "获取视频成功!", Toast.LENGTH_SHORT).show();
         getParentFragment().getFragmentManager()
                 .beginTransaction()
-                .add(R.id.fl_play,VideoPlayFragment.newInstance(video.getFiles().get_$3gphd().getSegs().get(0).getUrl()))
+                .setCustomAnimations(R.anim.activity_new_in,R.anim.activity_new_out,R.anim.activity_old_in,R.anim.activity_old_out)
+                .add(R.id.fl_lecture,VideoPlayFragment.newInstance(video.getFiles().get_$3gphd().getSegs().get(0).getUrl()))
                 .addToBackStack(null)
                 .commit();
 

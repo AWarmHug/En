@@ -15,12 +15,13 @@ import android.view.ViewGroup;
  * 简介:
  */
 
-public abstract class GodFragment extends Fragment implements View.OnTouchListener{
+public abstract class GodFragment extends Fragment implements View.OnTouchListener {
 
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
 
     }
 
@@ -30,11 +31,11 @@ public abstract class GodFragment extends Fragment implements View.OnTouchListen
         View view = inflater.inflate(getLayout(), container, false);
         view.setOnTouchListener(this);
         initView(view,savedInstanceState);
-        view.setBackground(getActivity().getWindow().getDecorView().getBackground());
+//        view.setBackground(getActivity().getWindow().getDecorView().getBackground());
         return view;
     }
-    protected abstract int getLayout();
 
+    protected abstract int getLayout();
 
 
     protected abstract void initView(View view, Bundle savedInstanceState);
@@ -48,7 +49,7 @@ public abstract class GodFragment extends Fragment implements View.OnTouchListen
          * 获取状态栏高度——方法1
          * */
         int statusBarHeight = 0;
-        if (Build.VERSION.SDK_INT>=21) {
+        if (Build.VERSION.SDK_INT >= 21) {
 //获取status_bar_height资源的ID
             int resourceId = getResources().getIdentifier("status_bar_height", "dimen", "android");
             if (resourceId > 0) {
@@ -61,9 +62,13 @@ public abstract class GodFragment extends Fragment implements View.OnTouchListen
 
     @Override
     public boolean onTouch(View v, MotionEvent event) {
-        if (v==getView()){
+        if (v == getView()) {
             return true;
         }
         return false;
     }
+
+
+
+
 }

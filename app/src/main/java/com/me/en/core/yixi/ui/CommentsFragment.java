@@ -3,16 +3,26 @@ package com.me.en.core.yixi.ui;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
+import android.widget.Toast;
 
 import com.me.en.R;
 import com.me.en.base.fragment.LazyFragment;
+import com.me.en.core.yixi.presenter.CommentsPresenter;
+import com.me.en.core.yixi.view.CommentsView;
+import com.me.en.entity.Comment;
+
+import java.util.List;
 
 /**
  * Created by warm on 17/5/7.
  */
 
-public class CommentsFragment extends LazyFragment{
+public class CommentsFragment extends LazyFragment implements CommentsView{
 
+    private CommentsPresenter presenter;
+
+
+    private int id;
 
     public static CommentsFragment newInstance(int id) {
 
@@ -31,6 +41,10 @@ public class CommentsFragment extends LazyFragment{
 
     @Override
     protected void doFirstVisible(@Nullable Bundle savedInstanceState) {
+        id=getArguments().getInt("id");
+
+        presenter=new CommentsPresenter(this);
+        presenter.getComments(id,0);
 
     }
 
@@ -46,6 +60,12 @@ public class CommentsFragment extends LazyFragment{
 
     @Override
     protected void initView(View view, Bundle savedInstanceState) {
+
+    }
+
+    @Override
+    public void getCommentsSuccess(List<Comment> comments) {
+        Toast.makeText(getContext(), "评论数量:"+comments.size(), Toast.LENGTH_SHORT).show();
 
     }
 }

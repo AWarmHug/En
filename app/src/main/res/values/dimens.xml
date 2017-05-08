@@ -25,7 +25,7 @@
     <dimen name="other_12sp">16sp</dimen>
 
     <dimen name="toolbar_height_56dp">56dp</dimen>
-    <dimen name="toolbar_elevation_12dp">12dp</dimen>
+    <dimen name="toolbar_elevation_0dp">0dp</dimen>
 
     <dimen name="bottomNavigationView_elevation_8dp">8dp</dimen>
 
@@ -33,6 +33,8 @@
 
     <dimen name="cardview_album_cornerradius_16dp">16dp</dimen>
 
-
+    <integer name="anim_duration_very_long">1500</integer>
+    <integer name="anim_duration_long">500</integer>
+    <integer name="anim_duration_medium">300</integer>
 
 </resources>
