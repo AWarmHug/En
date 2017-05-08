@@ -54,7 +54,6 @@ public class LectureDetailFragment extends LazyFragment implements LectureDetail
 
     @Override
     protected void initView(View view, Bundle savedInstanceState) {
-        view.setBackground(getActivity().getWindow().getDecorView().getBackground());
 
         iv_background = (ImageView) view.findViewById(R.id.iv_background);
         iv_lecturer_header = (ImageView) view.findViewById(R.id.iv_lecturer_header);

@@ -22,7 +22,6 @@ public abstract class GodFragment extends Fragment implements View.OnTouchListen
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-
     }
 
     @Nullable
