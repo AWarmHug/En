@@ -28,6 +28,7 @@ public class LectureDetailPresenter {
             @Override
             public void success(Lecture lecture) {
                 lectureDetailView.getLectureDetailSuccess(lecture);
+                getRelated(lecture.getId());
             }
 
             @Override
@@ -43,6 +44,21 @@ public class LectureDetailPresenter {
             @Override
             public void success(Video video) {
                 lectureDetailView.getLecturePlaySuccess(video);
+
+            }
+
+            @Override
+            public void fail(Error e) {
+
+            }
+        });
+    }
+
+    public void getRelated(int id){
+        lectureModel.getRelated(id, new Listener<Lecture>() {
+            @Override
+            public void success(Lecture lecture) {
+                lectureDetailView.getRelatedS(lecture);
 
             }
 

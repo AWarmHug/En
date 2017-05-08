@@ -2,14 +2,18 @@ package com.me.en.core.yixi.ui;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.text.TextUtils;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.me.en.R;
 import com.me.en.base.fragment.LazyFragment;
+import com.me.en.core.yixi.adapter.LectureRvAdapter;
 import com.me.en.core.yixi.presenter.LectureDetailPresenter;
 import com.me.en.core.yixi.view.LectureDetailView;
 import com.me.en.entity.Error;
@@ -23,19 +27,20 @@ import com.me.en.widget.glide.GlideCircleTransform;
  * 简介:
  */
 
-public class LectureDetailFragment extends LazyFragment implements LectureDetailView{
+public class LectureDetailFragment extends LazyFragment implements LectureDetailView {
 
     private LectureDetailPresenter presenter;
 
     private int id;
 
-    private TextView  tv_purecontent, tv_lecturer_name,tv_lecturer_desc,tv_title,tv_site_time,tv_desc,tv_toArticle;
-    private ImageView iv_background,iv_lecturer_header,iv_play;
+    private TextView tv_purecontent, tv_lecturer_name, tv_lecturer_desc, tv_title, tv_site_time, tv_desc, tv_toArticle;
+    private ImageView iv_background, iv_lecturer_header, iv_play;
+    private LinearLayout ll_related;
 
     public static LectureDetailFragment newInstance(int id) {
 
         Bundle args = new Bundle();
-        args.putInt("id",id);
+        args.putInt("id", id);
         LectureDetailFragment fragment = new LectureDetailFragment();
         fragment.setArguments(args);
         return fragment;
@@ -51,16 +56,17 @@ public class LectureDetailFragment extends LazyFragment implements LectureDetail
     protected void initView(View view, Bundle savedInstanceState) {
         view.setBackground(getActivity().getWindow().getDecorView().getBackground());
 
-        iv_background= (ImageView) view.findViewById(R.id.iv_background);
-        iv_lecturer_header= (ImageView) view.findViewById(R.id.iv_lecturer_header);
+        iv_background = (ImageView) view.findViewById(R.id.iv_background);
+        iv_lecturer_header = (ImageView) view.findViewById(R.id.iv_lecturer_header);
         tv_lecturer_name = (TextView) view.findViewById(R.id.tv_lecturer_name);
-        tv_lecturer_desc= (TextView) view.findViewById(R.id.tv_lecturer_desc);
-        tv_title= (TextView) view.findViewById(R.id.tv_title);
-        tv_site_time= (TextView) view.findViewById(R.id.tv_site_time);
-        tv_desc= (TextView) view.findViewById(R.id.tv_desc);
-        iv_play= (ImageView) view.findViewById(R.id.iv_play);
-        tv_toArticle= (TextView) view.findViewById(R.id.tv_toArticle);
-        tv_purecontent= (TextView) view.findViewById(R.id.tv_purecontent);
+        tv_lecturer_desc = (TextView) view.findViewById(R.id.tv_lecturer_desc);
+        tv_title = (TextView) view.findViewById(R.id.tv_title);
+        tv_site_time = (TextView) view.findViewById(R.id.tv_site_time);
+        tv_desc = (TextView) view.findViewById(R.id.tv_desc);
+        iv_play = (ImageView) view.findViewById(R.id.iv_play);
+        tv_toArticle = (TextView) view.findViewById(R.id.tv_toArticle);
+        tv_purecontent = (TextView) view.findViewById(R.id.tv_purecontent);
+        ll_related = (LinearLayout) view.findViewById(R.id.ll_related);
 
     }
 
@@ -77,8 +83,8 @@ public class LectureDetailFragment extends LazyFragment implements LectureDetail
 
     @Override
     protected void doFirstVisible(@Nullable Bundle savedInstanceState) {
-        id=getArguments().getInt("id",0);
-        presenter=new LectureDetailPresenter(this);
+        id = getArguments().getInt("id", 0);
+        presenter = new LectureDetailPresenter(this);
         presenter.getLecture(id);
     }
 
@@ -90,18 +96,18 @@ public class LectureDetailFragment extends LazyFragment implements LectureDetail
     @Override
     public void getLectureDetailSuccess(final Lecture lecture) {
 
-        Glide.with(this).load(lecture.getBackground()).asBitmap().centerCrop().into(iv_background);
-        Glide.with(this).load(lecture.getLecturer().getPic()).asBitmap().transform(new GlideCircleTransform(getContext())).into(iv_lecturer_header);
+        Glide.with(this).load(!TextUtils.isEmpty(lecture.getBackground())?lecture.getBackground():lecture.getLecturer().getBackground()).crossFade().centerCrop().into(iv_background);
+        Glide.with(this).load(lecture.getLecturer().getPic()).crossFade().transform(new GlideCircleTransform(getContext())).into(iv_lecturer_header);
         tv_lecturer_name.setText(lecture.getLecturer().getNickname());
         tv_lecturer_desc.setText(lecture.getLecturer().getDesc());
         tv_title.setText(lecture.getTitle());
-        tv_site_time.setText(lecture.getSite()+" | "+lecture.getTime());
+        tv_site_time.setText(lecture.getSite() + " | " + lecture.getTime());
         tv_desc.setText(lecture.getDesc());
-        Glide.with(this).load(lecture.getCover()).asBitmap().centerCrop().into(iv_play);
+        Glide.with(this).load(lecture.getCover()).crossFade().centerCrop().into(iv_play);
         iv_play.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                presenter.getLecturePlay(lecture.getId(),lecture.getVideo());
+                presenter.getLecturePlay(lecture.getId(), lecture.getVideo());
             }
         });
         tv_toArticle.setOnClickListener(new View.OnClickListener() {
@@ -114,7 +120,8 @@ public class LectureDetailFragment extends LazyFragment implements LectureDetail
         });
 
 
-        tv_purecontent.setText(lecture.getPurecontent().substring(0,200));
+        tv_purecontent.setText(lecture.getPurecontent().substring(0, 200));
+
 
     }
 
@@ -129,14 +136,39 @@ public class LectureDetailFragment extends LazyFragment implements LectureDetail
         Toast.makeText(getContext(), "获取视频成功!", Toast.LENGTH_SHORT).show();
         getParentFragment().getFragmentManager()
                 .beginTransaction()
-                .setCustomAnimations(R.anim.activity_new_in,R.anim.activity_new_out,R.anim.activity_old_in,R.anim.activity_old_out)
-                .add(R.id.fl_lecture,VideoPlayFragment.newInstance(video.getFiles().get_$3gphd().getSegs().get(0).getUrl()))
+                .setCustomAnimations(R.anim.activity_new_in, R.anim.activity_new_out, R.anim.activity_old_in, R.anim.activity_old_out)
+                .add(R.id.fl_lecture, VideoPlayFragment.newInstance(video.getFiles().get_$3gphd().getSegs().get(0).getUrl()))
                 .addToBackStack(null)
                 .commit();
 
 
     }
 
+    @Override
+    public void getRelatedS(final Lecture lecture) {
+        LectureRvAdapter.ViewHolder viewHolder = new LectureRvAdapter.ViewHolder(LayoutInflater.from(getContext()).inflate(R.layout.recy_adapter_lecture, ll_related, false));
+        viewHolder.tv_title.setText(lecture.getTitle());
+        viewHolder.tv_lecture_time_site.setText(lecture.getTime() + " | "+lecture.getSite());
+        viewHolder.tv_viewnum.setText(String.valueOf(lecture.getViewnum()));
+        viewHolder.tv_lecturer_name.setText(lecture.getLecturer().getNickname());
+        Glide.with(this).load(lecture.getCover()).crossFade().centerCrop().into(viewHolder.iv_cover);
+
+        ll_related.addView(viewHolder.itemView);
+
+        viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getParentFragment().getFragmentManager()
+                        .beginTransaction()
+                        .add(R.id.fl_lecture, LectureFragment.newInstance(lecture.getId()))
+                        .addToBackStack(null)
+                        .commit();
+
+            }
+        });
+
+
+    }
 
 
 }

@@ -29,7 +29,7 @@
 
     <dimen name="bottomNavigationView_elevation_8dp">8dp</dimen>
 
-    <dimen name="cardview_elevation_8dp">8dp</dimen>
+    <dimen name="cardview_elevation_2dp">2dp</dimen>
 
     <dimen name="cardview_album_cornerradius_16dp">16dp</dimen>
 

@@ -4,6 +4,7 @@ import android.content.Context;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
@@ -12,13 +13,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.resource.drawable.GlideDrawable;
-import com.bumptech.glide.request.animation.GlideAnimation;
-import com.bumptech.glide.request.target.BaseTarget;
-import com.bumptech.glide.request.target.SizeReadyCallback;
 import com.me.en.R;
 import com.me.en.entity.AlbumBean;
 import com.me.en.entity.Lecture;
@@ -66,8 +62,8 @@ public class AlbumDetailRvAdapter extends RecyclerView.Adapter<RecyclerView.View
                 ((TopViewHolder) holder).tv_title.setText(data.getTitle());
                 ((TopViewHolder) holder).tv_desc.setText(data.getDesc());
 
-                Log.d("back", "onBindViewHolder: " + data.getBackground().replace(".1536x1000", ""));
-                Glide.with(((TopViewHolder) holder).itemView.getContext()).load(data.getBackground().replace(".1536x1000", "")).centerCrop().crossFade().into(((TopViewHolder) holder).iv_background);
+                Log.d("okhttp", "onBindViewHolder: " + data.getBackground());
+                Glide.with(((TopViewHolder) holder).itemView.getContext()).load(data.getBackground()).centerCrop().crossFade().into(((TopViewHolder) holder).iv_background);
 
                 break;
             case SECOND:
@@ -77,7 +73,7 @@ public class AlbumDetailRvAdapter extends RecyclerView.Adapter<RecyclerView.View
                 ((SecondViewHolder) holder).tv_nickname.setText(data.getLectures().get(0).getLecturer().getNickname());
                 ((SecondViewHolder) holder).tv_time.setText(data.getLectures().get(0).getCreated_at());
 
-                Glide.with(((SecondViewHolder) holder).itemView.getContext()).load(data.getLectures().get(0).getBackground()).centerCrop().crossFade().into(((SecondViewHolder)holder).iv_cover);
+                Glide.with(((SecondViewHolder) holder).itemView.getContext()).load(!TextUtils.isEmpty(data.getLectures().get(0).getBackground())?data.getLectures().get(0).getBackground():data.getLectures().get(0).getLecturer().getBackground()).centerCrop().crossFade().into(((SecondViewHolder)holder).iv_cover);
 
                 for (Tag tag : data.getLectures().get(0).getTags()) {
                     ((SecondViewHolder) holder).fl.addView(buildLabel(((SecondViewHolder) holder).itemView.getContext(), tag));

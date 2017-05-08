@@ -40,6 +40,7 @@ public class RetrofitHelper {
 
         HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
         interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
+        CacheInterceptor cacheInterceptor = new CacheInterceptor();
         if (mOkHttpClient == null || retrofit == null) {
             synchronized (RetrofitHelper.class) {
                 if (mOkHttpClient == null) {
@@ -51,7 +52,7 @@ public class RetrofitHelper {
                     mOkHttpClient = new OkHttpClient.Builder()
                             .cache(cache)
                             .addInterceptor(interceptor)
-                            .addNetworkInterceptor(new CacheInterceptor())
+                            .addNetworkInterceptor(cacheInterceptor)
                             .retryOnConnectionFailure(true)
                             .connectTimeout(30, TimeUnit.SECONDS)
                             .writeTimeout(20, TimeUnit.SECONDS)
@@ -82,31 +83,32 @@ public class RetrofitHelper {
             int maxAge = 60*60;
             // 无网络时，设置超时为1天
             int maxStale = 60 * 60 * 24;
+
             Request request = chain.request();
+
             if (NetUtil.isNetworkAvailable(App.getInstance())) {
                 //有网络时只从网络获取
                 request = request.newBuilder()
+                        .header("User-Agent","YIXIProject/1.2 ( picsize=iphone6+ ; android 6.0; Scale/2.625)")
                         .cacheControl(CacheControl.FORCE_NETWORK)
                         .build();
                 Log.d("okhttp", "intercept: 有网络时");
             } else {
                 //无网络时只从缓存中读取
                 request = request.newBuilder()
+                        .header("User-Agent","YIXIProject/1.2 ( picsize=iphone6+ ; android 6.0; Scale/2.625)")
                         .cacheControl(CacheControl.FORCE_CACHE)
                         .build();
                 Log.d("okhttp", "intercept: 无网络时");
-
-
 //                Toast.makeText(App.getInstance(), "没有网络", Toast.LENGTH_SHORT).show();
             }
+
             Response response = chain.proceed(request);
 
-            response.header("User-Agent", "YIXIProject/1.2 ( picsize=iphone6+ ; android 6.0; Scale/2.625)");
 
             if (NetUtil.isNetworkAvailable(App.getInstance())) {
                 response = response.newBuilder()
                         .removeHeader("Pragma")
-//                        .header("User-Agent", "YIXIProject/1.2 ( picsize=iphone6+ ; android 6.0; Scale/2.625)")
                         .header("Cache-Control", "public ,max-age=" + maxAge)
                         .build();
             } else {
@@ -114,6 +116,7 @@ public class RetrofitHelper {
                         .removeHeader("Pragma")
                         .header("Cache-Control", "public, only-if-cached, max-stale=" + maxStale)
                         .build();
+
             }
             return response;
         }

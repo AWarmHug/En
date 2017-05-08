@@ -110,7 +110,7 @@
 
 
     <style name="AppTheme.CardView" parent="CardView">
-        <item name="cardElevation">@dimen/cardview_elevation_8dp</item>
+        <item name="cardElevation">@dimen/cardview_elevation_2dp</item>
 
     </style>
 

@@ -11,4 +11,7 @@ public class Constants {
     public static String BASE_URL="http://api.yixi.tv/api/v1/";
 
 
+    public static String SIZE_LIST="";
+
+
 }

@@ -17,4 +17,6 @@ public interface LectureDetailView {
 
     void getLecturePlaySuccess(Video video);
 
+    void getRelatedS(Lecture lecture);
+
 }
