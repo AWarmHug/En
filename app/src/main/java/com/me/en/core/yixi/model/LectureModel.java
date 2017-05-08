@@ -4,6 +4,8 @@ import com.me.en.base.Listener;
 import com.me.en.entity.Lecture;
 import com.me.en.entity.Video;
 
+import java.util.List;
+
 /**
  * 作者: 51hs_android
  * 时间: 2017/5/5
@@ -15,6 +17,8 @@ public interface LectureModel {
     void getLecture(int id,Listener<Lecture> listener);
 
     void getLecturePlay(int id, String playId,Listener<Video> listener);
+
+    void getRelated(int id,Listener<List<Lecture>> listener);
 
 
 }

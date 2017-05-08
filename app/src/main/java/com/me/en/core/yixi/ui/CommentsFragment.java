@@ -2,6 +2,7 @@ package com.me.en.core.yixi.ui;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Toast;
 
@@ -20,6 +21,8 @@ import java.util.List;
 public class CommentsFragment extends LazyFragment implements CommentsView{
 
     private CommentsPresenter presenter;
+
+    private RecyclerView rv_comments;
 
 
     private int id;
@@ -60,6 +63,7 @@ public class CommentsFragment extends LazyFragment implements CommentsView{
 
     @Override
     protected void initView(View view, Bundle savedInstanceState) {
+        rv_comments= (RecyclerView) view.findViewById(R.id.rv_comments);
 
     }
 

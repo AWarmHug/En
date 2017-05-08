@@ -5,6 +5,7 @@ import android.os.Parcelable;
 
 /**
  * Created by warm on 17/5/4.
+ * 演讲者
  */
 
 public class Lecturer implements Parcelable {

@@ -107,12 +107,9 @@ public class LectureDetailFragment extends LazyFragment implements LectureDetail
         tv_toArticle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getParentFragment().getFragmentManager()
-                        .beginTransaction()
-                        .setCustomAnimations(R.anim.activity_new_in,R.anim.activity_new_out,R.anim.activity_old_in,R.anim.activity_old_out)
-                        .add(R.id.fl_lecture,ArticleFragment.newInstance(lecture))
-                        .addToBackStack(null)
-                        .commit();
+                tv_toArticle.setVisibility(View.GONE);
+                tv_purecontent.setText(lecture.getPurecontent());
+
             }
         });
 

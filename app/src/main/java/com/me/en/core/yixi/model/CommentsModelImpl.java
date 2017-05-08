@@ -25,21 +25,12 @@ public class CommentsModelImpl implements CommentsModel {
     @Override
     public void getComments(int id, int page, final Listener<List<Comment>> listener) {
         RetrofitHelper.getApi(YixiApi.class).getComments("lecture",id,page)
-                .filter(new Predicate<Base<List<Comment>>>() {
+                .map(new Function<Base<List<Comment>>, List<Comment>>() {
                     @Override
-                    public boolean test(@NonNull Base<List<Comment>> listBase) throws Exception {
-
-                        return listBase.getData().size()==18;
+                    public List<Comment> apply(@NonNull Base<List<Comment>> listBase) throws Exception {
+                        return listBase.getRes()==0?listBase.getData():null;
                     }
-                }).map(new Function<Base<List<Comment>>, List<Comment>>() {
-            @Override
-            public List<Comment> apply(@NonNull Base<List<Comment>> listBase) throws Exception {
-                listBase.getData().remove(0);
-                listBase.getData().remove(1);
-
-                return listBase.getData();
-            }
-        })
+                })
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<List<Comment>>() {

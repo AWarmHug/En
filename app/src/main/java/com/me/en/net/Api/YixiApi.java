@@ -46,6 +46,10 @@ public interface YixiApi {
     Flowable<Base<List<Comment>>> getComments2(@Path("type") String type,@Path("id") int id,@Path("page") int page);
 
 
+    @GET("{type}/{id}/related")
+    Observable<Base<List<Lecture>>> getRelated(@Path("type") String type,@Path("id") int id);
+
+
 
 
 }

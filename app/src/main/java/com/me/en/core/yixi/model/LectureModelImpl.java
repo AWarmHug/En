@@ -8,12 +8,19 @@ import com.me.en.entity.Video;
 import com.me.en.net.api.YixiApi;
 import com.me.en.net.RetrofitHelper;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import io.reactivex.Observable;
+import io.reactivex.ObservableEmitter;
+import io.reactivex.ObservableOnSubscribe;
 import io.reactivex.ObservableSource;
 import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.annotations.NonNull;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Function;
+import io.reactivex.observers.DefaultObserver;
 import io.reactivex.schedulers.Schedulers;
 
 /**
@@ -38,6 +45,7 @@ public class LectureModelImpl implements LectureModel {
                     @Override
                     public void onNext(@NonNull Base<Lecture> lectureBase) {
                         listener.success(lectureBase.getData());
+
                     }
 
                     @Override
@@ -54,6 +62,11 @@ public class LectureModelImpl implements LectureModel {
 
     @Override
     public void getLecturePlay(int id, final String playId , final Listener<Video> listener) {
+
+
+
+
+
 
         RetrofitHelper.getApi(YixiApi.class).getLecturePlayed(id)
                 .flatMap(new Function<Base, ObservableSource<Video>>() {
@@ -87,7 +100,32 @@ public class LectureModelImpl implements LectureModel {
 
                     }
                 });
+    }
 
+    @Override
+    public void getRelated(int id, final Listener<List<Lecture>> listener) {
+        RetrofitHelper.getApi(YixiApi.class).getRelated("related",id)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new DefaultObserver<Base<List<Lecture>>>() {
+                    @Override
+                    public void onNext(@NonNull Base<List<Lecture>> listBase) {
+                        listener.success(listBase.getData());
+
+                    }
+
+                    @Override
+                    public void onError(@NonNull Throwable e) {
+
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
 
     }
+
+
 }

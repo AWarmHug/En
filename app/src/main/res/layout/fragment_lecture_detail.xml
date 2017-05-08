@@ -120,15 +120,23 @@
 
             <TextView
                 android:id="@+id/tv_toArticle"
-                android:layout_width="120dp"
+                android:layout_width="wrap_content"
                 android:layout_height="48dp"
                 android:layout_gravity="center_horizontal"
-                android:gravity="right|center_vertical"
-                android:background="@color/colorAccent"
                 android:text="全文阅读"
                 android:drawablePadding="16dp"
-                android:textColor="@color/white"
-                android:textSize="20sp" />
+                android:textColor="@color/colorPrimary"
+                android:textSize="16sp" />
+
+            <LinearLayout
+                android:id="@+id/ll_related"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                >
+            </LinearLayout>
+
+
 
         </LinearLayout>
     </android.support.v4.widget.NestedScrollView>

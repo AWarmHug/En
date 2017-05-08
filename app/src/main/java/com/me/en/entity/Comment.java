@@ -25,9 +25,7 @@ public class Comment {
     private int lecture_id;
     private String created_at;
     private String updated_at;
-    private UserBean user;
-    private Object touser;
-    private LectureBean lecture;
+    private User user;
 
     public int getId() {
         return id;
@@ -85,109 +83,11 @@ public class Comment {
         this.updated_at = updated_at;
     }
 
-    public UserBean getUser() {
+    public User getUser() {
         return user;
     }
 
-    public void setUser(UserBean user) {
+    public void setUser(User user) {
         this.user = user;
-    }
-
-    public Object getTouser() {
-        return touser;
-    }
-
-    public void setTouser(Object touser) {
-        this.touser = touser;
-    }
-
-    public LectureBean getLecture() {
-        return lecture;
-    }
-
-    public void setLecture(LectureBean lecture) {
-        this.lecture = lecture;
-    }
-
-    public static class UserBean {
-        /**
-         * id : 115732
-         * nickname : oooo0oooo0@vip.qq.com
-         * pic :
-         * is_lecturer : 0
-         */
-
-        private int id;
-        private String nickname;
-        private String pic;
-        private int is_lecturer;
-
-        public int getId() {
-            return id;
-        }
-
-        public void setId(int id) {
-            this.id = id;
-        }
-
-        public String getNickname() {
-            return nickname;
-        }
-
-        public void setNickname(String nickname) {
-            this.nickname = nickname;
-        }
-
-        public String getPic() {
-            return pic;
-        }
-
-        public void setPic(String pic) {
-            this.pic = pic;
-        }
-
-        public int getIs_lecturer() {
-            return is_lecturer;
-        }
-
-        public void setIs_lecturer(int is_lecturer) {
-            this.is_lecturer = is_lecturer;
-        }
-    }
-
-    public static class LectureBean {
-        /**
-         * id : 416
-         * title : 浊水溪三百年
-         * type : lec
-         */
-
-        private int id;
-        private String title;
-        private String type;
-
-        public int getId() {
-            return id;
-        }
-
-        public void setId(int id) {
-            this.id = id;
-        }
-
-        public String getTitle() {
-            return title;
-        }
-
-        public void setTitle(String title) {
-            this.title = title;
-        }
-
-        public String getType() {
-            return type;
-        }
-
-        public void setType(String type) {
-            this.type = type;
-        }
     }
 }
