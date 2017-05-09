@@ -82,14 +82,13 @@ public abstract class TailRecyAdapter<T> extends EnBaseRecyAdapter<T> {
         }
         setState(SUCCESS);
 
-
     }
+
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         if (viewType == BOTTOM) {
             return new TailViewHolder(bottomView);
-
         } else {
             return super.onCreateViewHolder(parent,viewType);
         }
@@ -154,7 +153,6 @@ public abstract class TailRecyAdapter<T> extends EnBaseRecyAdapter<T> {
             case LOAD:
                 loadMoreView.setText("正在加载，请稍后...");
                 loadMoreView.setPbVisibility(View.VISIBLE);
-
                 break;
         }
     }

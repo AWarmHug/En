@@ -51,6 +51,18 @@ public class AlbumFragment extends LazyFragment implements AlbumView {
         tb_select= (Toolbar) view.findViewById(R.id.tb_select);
         vp= (ViewPager) view.findViewById(R.id.vp);
         setUserVisibleHint(true);
+        tb_select.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getActivity().getSupportFragmentManager()
+                        .beginTransaction()
+                        .setCustomAnimations(R.anim.activity_new_in,0,0,R.anim.activity_old_out)
+
+                        .add(R.id.rela_main,MoreFragment.newInstance())
+                        .addToBackStack(null).commit();
+
+            }
+        });
 
     }
 

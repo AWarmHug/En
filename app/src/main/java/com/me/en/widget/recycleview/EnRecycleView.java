@@ -47,7 +47,6 @@ public class EnRecycleView extends RecyclerView {
     public EnRecycleView(Context context, @Nullable AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
         setLayoutManager(new LinearLayoutManager(getContext()));
-        addItemDecoration(new DividerItemDecoration(getContext(),DividerItemDecoration.VERTICAL));
     }
 
     public void setLoadF(boolean loadF) {
@@ -71,7 +70,6 @@ public class EnRecycleView extends RecyclerView {
             int lastVisibleItem = linearLayoutManager.findLastVisibleItemPosition();
             int totalItemCount = linearLayoutManager.getItemCount();
 
-            Log.d(TAG, "onScrolled: ");
             if (loadMore != null && lastVisibleItem >= totalItemCount - 4 && loadF) {
                 loadMore.load();
                 loadF = false;

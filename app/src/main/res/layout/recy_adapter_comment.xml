@@ -1,6 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingRight="@dimen/left_right_margin_16dp"
+    android:paddingLeft="@dimen/left_right_margin_16dp"
+    android:paddingTop="@dimen/top_bottom_margin_8dp"
+    android:paddingBottom="@dimen/top_bottom_margin_8dp"
+    >
+    <ImageView
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:id="@+id/iv_header"
+        />
 
-</LinearLayout>
+    <TextView
+        android:id="@+id/tv_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/iv_header"
+        android:layout_marginLeft="8dp"
+        style="@style/AppTheme.TextAppearance.Name"
+        android:textSize="@dimen/name_16sp"
+        />
+    <TextView
+        android:id="@+id/tv_time"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/iv_header"
+        android:layout_marginLeft="8dp"
+        android:layout_below="@+id/tv_name"
+        android:layout_marginTop="8dp"
+        style="@style/AppTheme.TextAppearance.Other"
+        android:textSize="14sp"
+        />
+
+    <TextView
+        android:id="@+id/tv_desc"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_below="@+id/iv_header"
+        style="@style/AppTheme.TextAppearance.Body"
+        />
+
+
+
+
+</RelativeLayout>

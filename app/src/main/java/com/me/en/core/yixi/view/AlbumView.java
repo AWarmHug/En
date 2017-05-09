@@ -9,7 +9,7 @@ import com.me.en.entity.AlbumBean;
  * 简介:
  */
 
-public interface AlbumView {
+public interface AlbumView  {
 
     void getSelectSuccess(AlbumBean albumBean);
     void getSelectFail(Error e);

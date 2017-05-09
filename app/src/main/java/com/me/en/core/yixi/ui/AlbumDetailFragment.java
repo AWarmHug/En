@@ -77,9 +77,9 @@ public class AlbumDetailFragment extends LazyFragment implements AlbumDetailRvAd
 
         LectureFragment lectureFragment = LectureFragment.newInstance(lecture.getId());
 
-
-        getFragmentManager()
+        getActivity().getSupportFragmentManager()
                 .beginTransaction()
+                .setCustomAnimations(R.anim.activity_new_in,0,0,R.anim.activity_old_out)
                 .add(R.id.rl_album, lectureFragment)
                 .addToBackStack(null)
                 .commit();

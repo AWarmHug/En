@@ -2,6 +2,7 @@ package com.me.en.core.yixi.ui;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.widget.NestedScrollView;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -33,6 +34,7 @@ public class LectureDetailFragment extends LazyFragment implements LectureDetail
 
     private int id;
 
+    private NestedScrollView nsv;
     private TextView tv_purecontent, tv_lecturer_name, tv_lecturer_desc, tv_title, tv_site_time, tv_desc, tv_toArticle;
     private ImageView iv_background, iv_lecturer_header, iv_play;
     private LinearLayout ll_related;
@@ -54,7 +56,7 @@ public class LectureDetailFragment extends LazyFragment implements LectureDetail
 
     @Override
     protected void initView(View view, Bundle savedInstanceState) {
-
+        nsv= (NestedScrollView) view.findViewById(R.id.nsv);
         iv_background = (ImageView) view.findViewById(R.id.iv_background);
         iv_lecturer_header = (ImageView) view.findViewById(R.id.iv_lecturer_header);
         tv_lecturer_name = (TextView) view.findViewById(R.id.tv_lecturer_name);
@@ -66,6 +68,7 @@ public class LectureDetailFragment extends LazyFragment implements LectureDetail
         tv_toArticle = (TextView) view.findViewById(R.id.tv_toArticle);
         tv_purecontent = (TextView) view.findViewById(R.id.tv_purecontent);
         ll_related = (LinearLayout) view.findViewById(R.id.ll_related);
+
 
     }
 
@@ -95,6 +98,8 @@ public class LectureDetailFragment extends LazyFragment implements LectureDetail
     @Override
     public void getLectureDetailSuccess(final Lecture lecture) {
 
+
+
         Glide.with(this).load(!TextUtils.isEmpty(lecture.getBackground())?lecture.getBackground():lecture.getLecturer().getBackground()).crossFade().centerCrop().into(iv_background);
         Glide.with(this).load(lecture.getLecturer().getPic()).crossFade().transform(new GlideCircleTransform(getContext())).into(iv_lecturer_header);
         tv_lecturer_name.setText(lecture.getLecturer().getNickname());
@@ -122,6 +127,7 @@ public class LectureDetailFragment extends LazyFragment implements LectureDetail
         tv_purecontent.setText(lecture.getPurecontent().substring(0, 200));
 
 
+
     }
 
     @Override
@@ -133,10 +139,10 @@ public class LectureDetailFragment extends LazyFragment implements LectureDetail
     @Override
     public void getLecturePlaySuccess(Video video) {
         Toast.makeText(getContext(), "获取视频成功!", Toast.LENGTH_SHORT).show();
-        getParentFragment().getFragmentManager()
+       getActivity().getSupportFragmentManager()
                 .beginTransaction()
                 .setCustomAnimations(R.anim.activity_new_in, R.anim.activity_new_out, R.anim.activity_old_in, R.anim.activity_old_out)
-                .add(R.id.fl_lecture, VideoPlayFragment.newInstance(video.getFiles().get_$3gphd().getSegs().get(0).getUrl()))
+                .add(R.id.rela_main, VideoPlayFragment.newInstance(video.getFiles().get_$3gphd().getSegs().get(0).getUrl()))
                 .addToBackStack(null)
                 .commit();
 
@@ -153,16 +159,14 @@ public class LectureDetailFragment extends LazyFragment implements LectureDetail
         Glide.with(this).load(lecture.getCover()).crossFade().centerCrop().into(viewHolder.iv_cover);
 
         ll_related.addView(viewHolder.itemView);
-
         viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getParentFragment().getFragmentManager()
+               getActivity().getSupportFragmentManager()
                         .beginTransaction()
-                        .add(R.id.fl_lecture, LectureFragment.newInstance(lecture.getId()))
+                        .add(R.id.rela_main, LectureFragment.newInstance(lecture.getId()))
                         .addToBackStack(null)
                         .commit();
-
             }
         });
 

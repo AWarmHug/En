@@ -110,43 +110,6 @@ public class LectureModelImpl implements LectureModel {
                     }
                 });
 
-//        RetrofitHelper.getApi(YixiApi.class).getRelated("lecture", id)
-//                .filter(new Predicate<Base<List<Lecture>>>() {
-//                    @Override
-//                    public boolean test(@NonNull Base<List<Lecture>> listBase) throws Exception {
-//                        return listBase.getRes() == 0;
-//                    }
-//                }).flatMap(new Function<Base<List<Lecture>>, ObservableSource<Lecture>>() {
-//            @Override
-//            public ObservableSource<Lecture> apply(@NonNull Base<List<Lecture>> listBase) throws Exception {
-//                return Observable.fromIterable(listBase.getData());
-//            }
-//        })
-//                .subscribeOn(Schedulers.io())
-//                .observeOn(AndroidSchedulers.mainThread())
-//                .subscribe(new Observer<Lecture>() {
-//                    @Override
-//                    public void onSubscribe(@NonNull Disposable d) {
-//
-//                    }
-//
-//                    @Override
-//                    public void onNext(@NonNull Lecture lecture) {
-//                        listener.success(lecture);
-//
-//
-//                    }
-//
-//                    @Override
-//                    public void onError(@NonNull Throwable e) {
-//
-//                    }
-//
-//                    @Override
-//                    public void onComplete() {
-//
-//                    }
-//                });
 
     }
 

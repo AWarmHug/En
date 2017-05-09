@@ -4,6 +4,7 @@ import com.me.en.entity.AlbumBean;
 import com.me.en.entity.Base;
 import com.me.en.entity.Comment;
 import com.me.en.entity.Lecture;
+import com.me.en.entity.LecturesByDate;
 import com.me.en.entity.Video;
 
 import java.util.List;
@@ -48,6 +49,13 @@ public interface YixiApi {
 
     @GET("{type}/{id}/related")
     Observable<Base<List<Lecture>>> getRelated(@Path("type") String type,@Path("id") int id);
+
+
+    @GET("lecture/list/date/1/desc")
+    Observable<Base<List<LecturesByDate>>> getLectureByDate();
+
+    @GET("lecture/list/{type}/{page}/desc")
+    Observable<Base<List<Lecture>>> getLectureByType(@Path("type") String type,@Path("page") int page);
 
 
 

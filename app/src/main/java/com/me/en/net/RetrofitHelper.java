@@ -4,7 +4,6 @@ import android.util.Log;
 
 import com.me.en.App;
 import com.me.en.Constants;
-import com.me.en.net.api.YixiApi;
 import com.me.en.utils.NetUtil;
 
 import java.io.File;
@@ -26,7 +25,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
  * Created by 51hs_android on 2017/2/7.
  */
 
-public class RetrofitHelper {
+public class RetrofitHelper{
 
     static {
         initOkHttpClient();
@@ -128,9 +127,6 @@ public class RetrofitHelper {
         return retrofit.create(cla);
     }
 
-    public static YixiApi getSelApi() {
-        return retrofit.create(YixiApi.class);
-    }
 
 
 }

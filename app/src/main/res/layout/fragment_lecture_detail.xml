@@ -7,6 +7,7 @@
 
 
     <android.support.v4.widget.NestedScrollView
+        android:id="@+id/nsv"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -29,40 +30,7 @@
                 android:padding="@dimen/left_right_margin_16dp">
 
 
-                <ImageView
-                    android:id="@+id/iv_lecturer_header"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_marginTop="@dimen/top_bottom_margin_8dp" />
 
-                <TextView
-                    android:id="@+id/tv_lecturer_name"
-                    style="@style/AppTheme.TextAppearance.Name"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/top_bottom_margin_8dp"
-                    android:gravity="center_horizontal"
-                    android:textColor="@color/blue"
-                    android:textSize="18sp" />
-
-                <TextView
-                    android:id="@+id/tv_lecturer_desc"
-                    style="@style/AppTheme.TextAppearance.Name"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/top_bottom_margin_8dp"
-                    android:gravity="center_horizontal"
-                    android:textColor="@color/blue"
-                    android:textSize="14sp" />
-
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1px"
-                    android:layout_marginBottom="20dp"
-                    android:layout_marginTop="20dp"
-                    android:background="@color/colorAccent" />
 
                 <TextView
 
@@ -121,18 +89,85 @@
             <TextView
                 android:id="@+id/tv_toArticle"
                 android:layout_width="wrap_content"
-                android:layout_height="48dp"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:text="全文阅读"
-                android:drawablePadding="16dp"
                 android:textColor="@color/colorPrimary"
                 android:textSize="16sp" />
+
+
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:layout_marginTop="40dp"
+                android:layout_marginBottom="20dp"
+                android:background="@color/colorAccent" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="演讲嘉宾"
+                style="@style/AppTheme.TextAppearance.Title"
+                android:textSize="18sp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="20dp"
+                android:drawableBottom="@drawable/ic_vec_line"
+
+                />
+
+            <ImageView
+                android:id="@+id/iv_lecturer_header"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="20dp" />
+
+            <TextView
+                android:id="@+id/tv_lecturer_name"
+                style="@style/AppTheme.TextAppearance.Name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/top_bottom_margin_8dp"
+                android:gravity="center_horizontal"
+                android:textColor="@color/blue"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/tv_lecturer_desc"
+                style="@style/AppTheme.TextAppearance.Name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/top_bottom_margin_8dp"
+                android:gravity="center_horizontal"
+                android:textColor="@color/blue"
+                android:textSize="14sp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:layout_marginTop="40dp"
+                android:layout_marginBottom="20dp"
+                android:background="@color/colorAccent" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="相关推荐"
+                style="@style/AppTheme.TextAppearance.Title"
+                android:textSize="18sp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="20dp"
+                android:drawableBottom="@drawable/ic_vec_line"
+                />
+
 
             <LinearLayout
                 android:id="@+id/ll_related"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
+                android:layout_marginTop="20dp"
                 >
             </LinearLayout>
 
