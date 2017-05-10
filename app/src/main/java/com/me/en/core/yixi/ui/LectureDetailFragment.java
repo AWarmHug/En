@@ -1,9 +1,13 @@
 package com.me.en.core.yixi.ui;
 
+import android.animation.Animator;
+import android.animation.ObjectAnimator;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.NestedScrollView;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
@@ -68,8 +72,6 @@ public class LectureDetailFragment extends LazyFragment implements LectureDetail
         tv_toArticle = (TextView) view.findViewById(R.id.tv_toArticle);
         tv_purecontent = (TextView) view.findViewById(R.id.tv_purecontent);
         ll_related = (LinearLayout) view.findViewById(R.id.ll_related);
-
-
     }
 
 
@@ -98,16 +100,15 @@ public class LectureDetailFragment extends LazyFragment implements LectureDetail
     @Override
     public void getLectureDetailSuccess(final Lecture lecture) {
 
-
-
-        Glide.with(this).load(!TextUtils.isEmpty(lecture.getBackground())?lecture.getBackground():lecture.getLecturer().getBackground()).crossFade().centerCrop().into(iv_background);
-        Glide.with(this).load(lecture.getLecturer().getPic()).crossFade().transform(new GlideCircleTransform(getContext())).into(iv_lecturer_header);
+        Log.d("TAG", "onAnimationEnd: ");
+        Glide.with(LectureDetailFragment.this).load(!TextUtils.isEmpty(lecture.getBackground())?lecture.getBackground():lecture.getLecturer().getBackground()).crossFade().centerCrop().into(iv_background);
+        Glide.with(LectureDetailFragment.this).load(lecture.getLecturer().getPic()).crossFade().transform(new GlideCircleTransform(getContext())).into(iv_lecturer_header);
         tv_lecturer_name.setText(lecture.getLecturer().getNickname());
         tv_lecturer_desc.setText(lecture.getLecturer().getDesc());
         tv_title.setText(lecture.getTitle());
         tv_site_time.setText(lecture.getSite() + " | " + lecture.getTime());
         tv_desc.setText(lecture.getDesc());
-        Glide.with(this).load(lecture.getCover()).crossFade().centerCrop().into(iv_play);
+        Glide.with(LectureDetailFragment.this).load(lecture.getCover()).crossFade().centerCrop().into(iv_play);
         iv_play.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -125,6 +126,7 @@ public class LectureDetailFragment extends LazyFragment implements LectureDetail
 
 
         tv_purecontent.setText(lecture.getPurecontent().substring(0, 200));
+
 
 
 

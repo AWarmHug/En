@@ -79,7 +79,7 @@ public class AlbumDetailFragment extends LazyFragment implements AlbumDetailRvAd
 
         getActivity().getSupportFragmentManager()
                 .beginTransaction()
-                .setCustomAnimations(R.anim.activity_new_in,0,0,R.anim.activity_old_out)
+                .setCustomAnimations(R.anim.v_fragment_enter,0,0,R.anim.v_fragment_exit)
                 .add(R.id.rl_album, lectureFragment)
                 .addToBackStack(null)
                 .commit();

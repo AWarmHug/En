@@ -3,6 +3,8 @@ package com.me.en.core.yixi.ui;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 
 import com.me.en.R;
@@ -16,6 +18,7 @@ import com.me.en.core.yixi.adapter.MoreAdapter;
  */
 
 public class MoreFragment extends BaseFragment{
+    private static final String TAG = "MoreFragment";
 
     private ViewPager vp;
 
@@ -37,12 +40,13 @@ public class MoreFragment extends BaseFragment{
     @Override
     protected void initView(View view, Bundle savedInstanceState) {
         vp= (ViewPager) view.findViewById(R.id.vp);
-
     }
+
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+        Log.d(TAG, "onActivityCreated: ");
         MoreAdapter adapter=new MoreAdapter(getChildFragmentManager());
         vp.setAdapter(adapter);
     }
