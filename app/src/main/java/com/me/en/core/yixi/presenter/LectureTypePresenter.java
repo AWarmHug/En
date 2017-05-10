@@ -8,6 +8,8 @@ import com.me.en.entity.Lecture;
 
 import java.util.List;
 
+import io.reactivex.Observable;
+
 /**
  * 作者: 51hs_android
  * 时间: 2017/5/9
@@ -39,5 +41,8 @@ public class LectureTypePresenter {
             }
         });
     }
+
+
+
 
 }

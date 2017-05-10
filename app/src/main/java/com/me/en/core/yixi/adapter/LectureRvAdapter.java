@@ -1,6 +1,7 @@
 package com.me.en.core.yixi.adapter;
 
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -31,7 +32,7 @@ public class LectureRvAdapter extends TailRecyAdapter<Lecture> {
         ((NewViewHolder) holder).tv_lecture_time_site.setText(list.get(position).getTime() + " | " + list.get(position).getSite());
         ((NewViewHolder) holder).tv_viewnum.setText(String.valueOf(list.get(position).getViewnum()));
         ((NewViewHolder) holder).tv_lecturer_name.setText(list.get(position).getLecturer().getNickname());
-        Glide.with(holder.itemView.getContext()).load(list.get(position).getCover()).crossFade().centerCrop().into(((NewViewHolder) holder).iv_cover);
+        Glide.with(holder.itemView.getContext()).load(!TextUtils.isEmpty(list.get(position).getBackground())?list.get(position).getBackground():!TextUtils.isEmpty(list.get(position).getBackground())?list.get(position).getLecturer().getBackground():list.get(position).getCover().replace(".315x210","")).crossFade().centerCrop().into(((NewViewHolder) holder).iv_cover);
 
 
     }

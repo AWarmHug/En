@@ -79,7 +79,7 @@ public class RetrofitHelper{
         public Response intercept(Chain chain) throws IOException {
 
             // 有网络时 设置缓存超时时间1个小时
-            int maxAge = 0;
+            int maxAge = 60*60;
             // 无网络时，设置超时为1天
             int maxStale = 60 * 60 * 24;
 
@@ -122,8 +122,13 @@ public class RetrofitHelper{
     }
 
 
+    public static Retrofit getRetrofit() {
+        return retrofit;
+    }
 
     public static <T> T getApi(Class<T> cla) {
+
+
         return retrofit.create(cla);
     }
 

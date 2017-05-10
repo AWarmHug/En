@@ -8,8 +8,10 @@ import com.me.en.entity.Video;
 import com.me.en.net.RetrofitHelper;
 import com.me.en.net.api.YixiApi;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import io.reactivex.Observable;
 import io.reactivex.ObservableSource;
 import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -110,8 +112,10 @@ public class LectureModelImpl implements LectureModel {
                     }
                 });
 
-
     }
+
+
+
 
 
 }

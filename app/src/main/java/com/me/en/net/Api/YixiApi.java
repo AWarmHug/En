@@ -2,8 +2,10 @@ package com.me.en.net.api;
 
 import com.me.en.entity.AlbumBean;
 import com.me.en.entity.Base;
+import com.me.en.entity.Category;
 import com.me.en.entity.Comment;
 import com.me.en.entity.Lecture;
+import com.me.en.entity.Lecturer;
 import com.me.en.entity.LecturesByDate;
 import com.me.en.entity.Video;
 
@@ -58,6 +60,11 @@ public interface YixiApi {
     Observable<Base<List<Lecture>>> getLectureByType(@Path("type") String type,@Path("page") int page);
 
 
+    @GET("category/list")
+    Flowable<Base<List<Category>>> getCategory();
+
+    @GET("category/{id}/lecturers")
+    Flowable<Base<List<Lecturer>>> getLecturers(@Path("id") int id);
 
 
 

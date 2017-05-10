@@ -3,15 +3,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/linear"
-    android:background="@color/white"
     android:orientation="vertical">
-
-    <com.me.en.widget.recycleview.EnRecycleView
+    <android.support.v7.widget.RecyclerView
         android:id="@+id/rv"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-    </com.me.en.widget.recycleview.EnRecycleView>
+    </android.support.v7.widget.RecyclerView>
+
 
 
 </LinearLayout>

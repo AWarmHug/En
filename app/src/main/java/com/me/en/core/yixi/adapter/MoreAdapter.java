@@ -5,7 +5,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 
 import com.me.en.core.yixi.ui.LectureTypeFragment;
-import com.me.en.core.yixi.ui.LecturerFragment;
+import com.me.en.core.yixi.ui.LecturerTypeFragment;
 
 /**
  * 作者: 51hs_android
@@ -26,7 +26,7 @@ public class MoreAdapter extends FragmentStatePagerAdapter {
         if (position==0){
             return LectureTypeFragment.newInstance();
         }else {
-            return LecturerFragment.newInstance();
+            return LecturerTypeFragment.newInstance();
         }
 
     }

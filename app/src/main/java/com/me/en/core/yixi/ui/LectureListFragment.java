@@ -4,8 +4,6 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
-import android.view.MotionEvent;
 import android.view.View;
 
 import com.me.en.R;
@@ -36,7 +34,6 @@ public class LectureListFragment extends LazyFragment implements LectureTypeView
     private String type;
 
 
-    private LectureRvAdapter adapter;
 
 
     public static LectureListFragment newInstance(String type) {
@@ -61,7 +58,6 @@ public class LectureListFragment extends LazyFragment implements LectureTypeView
         type=getArguments().getString("type");
 
         presenter=new LectureTypePresenter(this);
-
         presenter.getLectureDate(type,1);
 
 
@@ -74,7 +70,7 @@ public class LectureListFragment extends LazyFragment implements LectureTypeView
 
     @Override
     protected int getLayout() {
-        return R.layout.fragment_lecturer_list;
+        return R.layout.fragment_recy;
     }
 
     @Override
@@ -89,7 +85,7 @@ public class LectureListFragment extends LazyFragment implements LectureTypeView
         LectureRvAdapter adapter=new LectureRvAdapter(lectures);
         rv.setAdapter(adapter);
         rv.setLayoutManager(new LinearLayoutManager(getContext()));
-    
+
         adapter.settOnItemClickListener(new EnBaseRecyAdapter.OnItemClickListener<Lecture>() {
             @Override
             public void itemClick(int position, Lecture lecture) {

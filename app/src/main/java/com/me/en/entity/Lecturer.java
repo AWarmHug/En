@@ -3,6 +3,9 @@ package com.me.en.entity;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by warm on 17/5/4.
  * 演讲者
@@ -26,6 +29,16 @@ public class Lecturer implements Parcelable {
     private String background;
     private int is_lecturer;
     private int cate_id;
+
+    private List<LecturesWithCover> lectures_with_cover;
+
+    public List<LecturesWithCover> getLectures_with_cover() {
+        return lectures_with_cover;
+    }
+
+    public void setLectures_with_cover(List<LecturesWithCover> lectures_with_cover) {
+        this.lectures_with_cover = lectures_with_cover;
+    }
 
     public int getId() {
         return id;
@@ -83,6 +96,86 @@ public class Lecturer implements Parcelable {
         this.cate_id = cate_id;
     }
 
+     private static class LecturesWithCover implements Parcelable {
+
+        private int id;
+        private String title;
+        private int lecturer_id;
+        private String cover;
+
+
+        public int getId() {
+            return id;
+        }
+
+        public void setId(int id) {
+            this.id = id;
+        }
+
+        public String getTitle() {
+            return title;
+        }
+
+        public void setTitle(String title) {
+            this.title = title;
+        }
+
+        public int getLecturer_id() {
+            return lecturer_id;
+        }
+
+        public void setLecturer_id(int lecturer_id) {
+            this.lecturer_id = lecturer_id;
+        }
+
+        public String getCover() {
+            return cover;
+        }
+
+        public void setCover(String cover) {
+            this.cover = cover;
+        }
+
+        @Override
+        public int describeContents() {
+            return 0;
+        }
+
+        @Override
+        public void writeToParcel(Parcel dest, int flags) {
+            dest.writeInt(this.id);
+            dest.writeString(this.title);
+            dest.writeInt(this.lecturer_id);
+            dest.writeString(this.cover);
+        }
+
+        public LecturesWithCover() {
+        }
+
+        protected LecturesWithCover(Parcel in) {
+            this.id = in.readInt();
+            this.title = in.readString();
+            this.lecturer_id = in.readInt();
+            this.cover = in.readString();
+        }
+
+        public static final Creator<LecturesWithCover> CREATOR = new Creator<LecturesWithCover>() {
+            @Override
+            public LecturesWithCover createFromParcel(Parcel source) {
+                return new LecturesWithCover(source);
+            }
+
+            @Override
+            public LecturesWithCover[] newArray(int size) {
+                return new LecturesWithCover[size];
+            }
+        };
+    }
+
+
+    public Lecturer() {
+    }
+
     @Override
     public int describeContents() {
         return 0;
@@ -97,9 +190,7 @@ public class Lecturer implements Parcelable {
         dest.writeString(this.background);
         dest.writeInt(this.is_lecturer);
         dest.writeInt(this.cate_id);
-    }
-
-    public Lecturer() {
+        dest.writeList(this.lectures_with_cover);
     }
 
     protected Lecturer(Parcel in) {
@@ -110,9 +201,11 @@ public class Lecturer implements Parcelable {
         this.background = in.readString();
         this.is_lecturer = in.readInt();
         this.cate_id = in.readInt();
+        this.lectures_with_cover = new ArrayList<LecturesWithCover>();
+        in.readList(this.lectures_with_cover, LecturesWithCover.class.getClassLoader());
     }
 
-    public static final Parcelable.Creator<Lecturer> CREATOR = new Parcelable.Creator<Lecturer>() {
+    public static final Creator<Lecturer> CREATOR = new Creator<Lecturer>() {
         @Override
         public Lecturer createFromParcel(Parcel source) {
             return new Lecturer(source);
