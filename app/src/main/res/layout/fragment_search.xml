@@ -17,20 +17,18 @@
         </com.me.en.widget.SearchView>
     </android.support.v7.widget.Toolbar>
 
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_below="@+id/tb"
+
+        android:layout_height="match_parent">
     <LinearLayout
-        android:id="@+id/ll_hot"
+        android:id="@+id/ll"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/tb"
         android:orientation="vertical"
         />
-
-
-    <FrameLayout
-        android:id="@+id/fl"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@+id/tb"/>
+    </android.support.v4.widget.NestedScrollView>
 
 
 </RelativeLayout>

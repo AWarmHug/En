@@ -15,8 +15,6 @@ import com.me.en.net.RetrofitHelper;
 import com.me.en.net.api.YixiApi;
 import com.me.en.widget.SearchView;
 
-import org.reactivestreams.Publisher;
-
 import java.util.List;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -35,7 +33,7 @@ import io.reactivex.schedulers.Schedulers;
 public class SearchFragment extends BaseFragment implements SearchView.OnSearchClickListener {
     private SearchView sv;
     private Toolbar tb;
-    private LinearLayout ll_hot;
+    private LinearLayout ll;
 
 
     public static SearchFragment newInstance() {
@@ -57,7 +55,7 @@ public class SearchFragment extends BaseFragment implements SearchView.OnSearchC
     protected void initView(View view, Bundle savedInstanceState) {
         tb = (Toolbar) view.findViewById(R.id.tb);
         sv = (SearchView) view.findViewById(R.id.sv);
-        ll_hot = (LinearLayout) view.findViewById(R.id.ll_hot);
+        ll = (LinearLayout) view.findViewById(R.id.ll);
     }
 
 
@@ -83,10 +81,9 @@ public class SearchFragment extends BaseFragment implements SearchView.OnSearchC
                 .subscribe(new Consumer<TextView>() {
                     @Override
                     public void accept(@NonNull TextView textView) throws Exception {
-                        ll_hot.addView(textView);
+                        ll.addView(textView);
                     }
                 });
-
         sv.setOnSearchClickListener(this);
     }
 
@@ -111,9 +108,20 @@ public class SearchFragment extends BaseFragment implements SearchView.OnSearchC
                 .subscribe(new Consumer<Search>() {
                     @Override
                     public void accept(@NonNull Search searchBase) throws Exception {
-
+                        ll.removeAllViews();
 
                     }
                 });
     }
+
+
+
+    class LecrViewHolder {
+        private View view;
+
+        public LecrViewHolder(View view) {
+            this.view = view;
+        }
+    }
+
 }
