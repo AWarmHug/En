@@ -77,6 +77,21 @@
 
             </RelativeLayout>
 
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="演讲正文"
+                style="@style/AppTheme.TextAppearance.Title"
+                android:textSize="18sp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="20dp"
+                android:drawableBottom="@drawable/ic_vec_line"
+
+                />
+
+
+
             <TextView
                 android:id="@+id/tv_purecontent"
                 style="@style/AppTheme.TextAppearance.Album.Body"

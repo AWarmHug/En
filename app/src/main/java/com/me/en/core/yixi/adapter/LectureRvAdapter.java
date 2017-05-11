@@ -10,7 +10,6 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.me.en.R;
-import com.me.en.core.yixi.ui.LectureFragment;
 import com.me.en.entity.Lecture;
 import com.me.en.widget.recycleview.recyadapter.TailRecyAdapter;
 
@@ -32,7 +31,7 @@ public class LectureRvAdapter extends TailRecyAdapter<Lecture> {
         ((NewViewHolder) holder).tv_lecture_time_site.setText(list.get(position).getTime() + " | " + list.get(position).getSite());
         ((NewViewHolder) holder).tv_viewnum.setText(String.valueOf(list.get(position).getViewnum()));
         ((NewViewHolder) holder).tv_lecturer_name.setText(list.get(position).getLecturer().getNickname());
-        Glide.with(holder.itemView.getContext()).load(!TextUtils.isEmpty(list.get(position).getBackground())?list.get(position).getBackground():!TextUtils.isEmpty(list.get(position).getBackground())?list.get(position).getLecturer().getBackground():list.get(position).getCover().replace(".315x210","")).crossFade().centerCrop().into(((NewViewHolder) holder).iv_cover);
+        Glide.with(holder.itemView.getContext()).load(!TextUtils.isEmpty(list.get(position).getBackground())?list.get(position).getBackground():!TextUtils.isEmpty(list.get(position).getBackground())?list.get(position).getLecturer().getBackground():list.get(position).getCover().replace(".315x210",".1242x701")).crossFade().centerCrop().into(((NewViewHolder) holder).iv_cover);
 
 
     }

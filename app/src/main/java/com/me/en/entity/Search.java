@@ -15,4 +15,19 @@ public class Search {
 
     private List<Lecturer> lecturers;
 
+    public List<Lec> getLecs() {
+        return lecs;
+    }
+
+    public void setLecs(List<Lec> lecs) {
+        this.lecs = lecs;
+    }
+
+    public List<Lecturer> getLecturers() {
+        return lecturers;
+    }
+
+    public void setLecturers(List<Lecturer> lecturers) {
+        this.lecturers = lecturers;
+    }
 }

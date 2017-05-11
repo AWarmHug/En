@@ -7,7 +7,9 @@
     <android.support.v7.widget.Toolbar
         android:id="@+id/tb"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        style="@style/AppTheme.ToolBar"
+        >
 
         <com.me.en.widget.SearchView
             android:id="@+id/sv"

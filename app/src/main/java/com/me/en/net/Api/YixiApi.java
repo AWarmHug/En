@@ -71,7 +71,7 @@ public interface YixiApi {
     Flowable<Base<List<String>>> getKeyWords();
 
     @GET("search/{keyword}")
-    Flowable<Base<Search>> getSearch(String keyword);
+    Flowable<Base<Search>> getSearch(@Path("keyword")String keyword);
 
 
 

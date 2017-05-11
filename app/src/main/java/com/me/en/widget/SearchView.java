@@ -1,17 +1,14 @@
 package com.me.en.widget;
 
 import android.content.Context;
-import android.support.v7.widget.AppCompatImageButton;
 import android.text.TextWatcher;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
-import android.widget.TextSwitcher;
 
 import com.me.en.R;
-import com.me.en.core.yixi.adapter.LecturerRvAdapter;
 
 /**
  * 作者: 51hs_android
@@ -61,7 +58,13 @@ public class SearchView extends LinearLayout {
         });
     }
 
+    public EditText getEt() {
+        return et;
+    }
 
+    public ImageButton getIb() {
+        return ib;
+    }
 
     public void OnSearchButton(OnClickListener onClickListener){
         ib.setOnClickListener(onClickListener);
