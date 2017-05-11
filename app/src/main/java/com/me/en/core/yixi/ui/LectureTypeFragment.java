@@ -6,6 +6,7 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Toast;
 
@@ -21,7 +22,6 @@ import com.me.en.core.yixi.adapter.LectureTypeVpAdapter;
 
 public class LectureTypeFragment extends LazyFragment {
 
-    private Toolbar tb;
     private ViewPager vp;
     private TabLayout tl;
 
@@ -45,8 +45,6 @@ public class LectureTypeFragment extends LazyFragment {
     @Override
     protected void initView(View view, Bundle savedInstanceState) {
 
-        tb= (Toolbar) view.findViewById(R.id.tb);
-        tb.setTitle("全部演讲");
         vp= (ViewPager) view.findViewById(R.id.vp);
         tl= (TabLayout) view.findViewById(R.id.tl);
 
@@ -71,5 +69,6 @@ public class LectureTypeFragment extends LazyFragment {
     protected void doVisible(@Nullable Bundle savedInstanceState) {
 
     }
+
 
 }

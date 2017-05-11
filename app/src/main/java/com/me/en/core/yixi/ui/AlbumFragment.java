@@ -2,6 +2,7 @@ package com.me.en.core.yixi.ui;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -54,12 +55,12 @@ public class AlbumFragment extends LazyFragment implements AlbumView {
         tb_select.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 getActivity().getSupportFragmentManager()
                         .beginTransaction()
-                        .setCustomAnimations(R.anim.v_fragment_enter,0,0,R.anim.v_fragment_exit)
                         .add(R.id.rela_main,MoreFragment.newInstance())
-                        .addToBackStack(null).commit();
-
+                        .addToBackStack(MoreFragment.class.getSimpleName())
+                        .commit();
             }
         });
     }

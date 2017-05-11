@@ -31,7 +31,6 @@ import io.reactivex.schedulers.Schedulers;
  */
 
 public class LecturerTypeFragment extends LazyFragment {
-    private Toolbar tb;
     private TabLayout tl;
     private ViewPager vp;
 
@@ -52,8 +51,7 @@ public class LecturerTypeFragment extends LazyFragment {
 
     @Override
     protected void initView(View view, Bundle savedInstanceState) {
-        tb= (Toolbar) view.findViewById(R.id.tb);
-        tb.setTitle("全部讲者");
+
         tl= (TabLayout) view.findViewById(R.id.tl);
         vp= (ViewPager) view.findViewById(R.id.vp);
 
@@ -87,6 +85,7 @@ public class LecturerTypeFragment extends LazyFragment {
                         LecturerVpAdapter adapter =new LecturerVpAdapter(getChildFragmentManager(),categories);
                         vp.setAdapter(adapter);
                         tl.setupWithViewPager(vp);
+                        vp.setOffscreenPageLimit(categories.size());
 
                     }
                 });

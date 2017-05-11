@@ -7,6 +7,7 @@ import com.me.en.entity.Comment;
 import com.me.en.entity.Lecture;
 import com.me.en.entity.Lecturer;
 import com.me.en.entity.LecturesByDate;
+import com.me.en.entity.Search;
 import com.me.en.entity.Video;
 
 import java.util.List;
@@ -65,6 +66,12 @@ public interface YixiApi {
 
     @GET("category/{id}/lecturers")
     Flowable<Base<List<Lecturer>>> getLecturers(@Path("id") int id);
+
+    @GET("searchkeywords")
+    Flowable<Base<List<String>>> getKeyWords();
+
+    @GET("search/{keyword}")
+    Flowable<Base<Search>> getSearch(String keyword);
 
 
 

@@ -1,15 +1,18 @@
 package com.me.en.core.yixi.model;
 
+import com.me.en.R;
 import com.me.en.base.Listener;
 import com.me.en.entity.Base;
 import com.me.en.entity.Error;
 import com.me.en.entity.Lecture;
+import com.me.en.entity.LecturesByDate;
 import com.me.en.entity.Video;
 import com.me.en.net.RetrofitHelper;
 import com.me.en.net.api.YixiApi;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import io.reactivex.Observable;
 import io.reactivex.ObservableSource;
@@ -30,9 +33,14 @@ import io.reactivex.schedulers.Schedulers;
 public class LectureModelImpl implements LectureModel {
 
     @Override
-    public void getLecture(int id, final Listener<Lecture> listener) {
-        RetrofitHelper.getApi(YixiApi.class).getLectureDetal("lecture", id)
-                .subscribeOn(Schedulers.io())
+    public void getLecture(final int id, final Listener<Lecture> listener) {
+
+        Observable.timer(300, TimeUnit.MILLISECONDS).flatMap(new Function<Long, ObservableSource<Base<Lecture>>>() {
+            @Override
+            public ObservableSource<Base<Lecture>> apply(@NonNull Long aLong) throws Exception {
+                return RetrofitHelper.getApi(YixiApi.class).getLectureDetal("lecture", id);
+            }
+        }).subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<Base<Lecture>>() {
                     @Override
@@ -113,9 +121,6 @@ public class LectureModelImpl implements LectureModel {
                 });
 
     }
-
-
-
 
 
 }
