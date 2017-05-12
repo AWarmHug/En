@@ -14,6 +14,7 @@ import com.me.en.core.yixi.presenter.AlbumPresenter;
 import com.me.en.core.yixi.view.AlbumView;
 import com.me.en.entity.AlbumBean;
 import com.me.en.entity.Error;
+import com.me.en.widget.EnToolBar;
 
 /**
  * 作者: 51hs_android

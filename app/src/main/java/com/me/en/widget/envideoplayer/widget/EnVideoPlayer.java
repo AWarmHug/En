@@ -32,13 +32,15 @@ public class EnVideoPlayer extends RelativeLayout implements EnPlayController.Pl
     private Timer mTimer;
     private TimerTask mTimerTask;
 
+    private final int MSG_CONTROLLER=-1002;
+
     private final int MSG_UPDATE = -1001;
 
     private int playState;
 
     private int fullState;
 
-    private int seekSpeed=15;
+    private int seekSpeed=25;
 
 
     private Handler mHandler = new Handler() {
@@ -47,12 +49,25 @@ public class EnVideoPlayer extends RelativeLayout implements EnPlayController.Pl
             super.handleMessage(msg);
             switch (msg.what) {
                 case PlayState.PREPARE:
+
                     etb.setTitle("这是标题");
                     etb.setTotalTime(evv.getDuration());
+                    animController();
+                    resetTime();
+                    epc.setDuration(evv.getDuration());
+                    epc.switchPlay(isPlaying());
+
                 case MSG_UPDATE:
+
                     epc.updataProgress(evv.getCurrentPosition(), evv.getCurrentPercentage());
 
                     break;
+                case MSG_CONTROLLER:
+
+                    animController();
+
+                    break;
+
             }
 
         }
@@ -86,15 +101,15 @@ public class EnVideoPlayer extends RelativeLayout implements EnPlayController.Pl
         evv.setOnCompletionListener(onCompletionListener);
         evv.setOnInfoListener(onInfoListener);
 //        evv.setOnCompletionListener(mCompletionListener);
-//        evv.setOnErrorListener(mErrorListener);
 
+        evv.setOnErrorListener(onErrorListener);
     }
 
     private MediaPlayer.OnCompletionListener onCompletionListener = new MediaPlayer.OnCompletionListener() {
         @Override
         public void onCompletion(MediaPlayer mp) {
 
-
+            mHandler.sendEmptyMessage(MSG_CONTROLLER);
 
         }
     };
@@ -106,9 +121,7 @@ public class EnVideoPlayer extends RelativeLayout implements EnPlayController.Pl
             Log.d(TAG, "onPrepared: ");
 
             mHandler.sendEmptyMessage(PlayState.PREPARE);
-            resetTime();
 
-            epc.setDuration(mp.getDuration());
 
         }
     };
@@ -122,6 +135,14 @@ public class EnVideoPlayer extends RelativeLayout implements EnPlayController.Pl
             if (what == MediaPlayer.MEDIA_INFO_BUFFERING_START) {
 
             }
+            return false;
+        }
+    };
+
+    private MediaPlayer.OnErrorListener onErrorListener=new MediaPlayer.OnErrorListener() {
+        @Override
+        public boolean onError(MediaPlayer mp, int what, int extra) {
+
 
             return false;
         }
@@ -129,18 +150,14 @@ public class EnVideoPlayer extends RelativeLayout implements EnPlayController.Pl
 
 
 
-
-
     private void resetTime() {
         stopTime();
-
 
         mTimer = new Timer();
 
         mTimerTask = new TimerTask() {
 
             @Override
-
             public void run() {
 //                    epc.setTime(evv.getCurrentPosition());
                 mHandler.sendEmptyMessage(MSG_UPDATE);
@@ -190,10 +207,7 @@ public class EnVideoPlayer extends RelativeLayout implements EnPlayController.Pl
 
     @Override
     public void seekTo(long progress) {
-
             evv.seekTo((int) progress);
-
-
     }
 
     @Override
@@ -206,19 +220,18 @@ public class EnVideoPlayer extends RelativeLayout implements EnPlayController.Pl
         if (epc.getTranslationY()==0) {
             etb.animate().translationY(-etb.getHeight()).setDuration(500).start();
             epc.animate().translationY(epc.getHeight()).setDuration(500).start();
+            mHandler.removeMessages(MSG_CONTROLLER);
         }else {
             etb.animate().translationY(0).setDuration(500).start();
             epc.animate().translationY(0).setDuration(500).start();
+            mHandler.sendEmptyMessageDelayed(MSG_CONTROLLER,5000);
         }
-
     }
 
 
     @Override
     public void onSingleTapUp() {
         animController();
-
-
     }
 
     @Override

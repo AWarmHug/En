@@ -1,5 +1,6 @@
 package com.me.en.base.fragment;
 
+import android.content.Context;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -79,6 +80,47 @@ public abstract class GodFragment extends Fragment implements View.OnTouchListen
             return AnimationUtils.loadAnimation(getContext(), R.anim.v_fragment_enter);
         }
         return AnimationUtils.loadAnimation(getContext(), R.anim.v_fragment_exit);
+    }
+
+
+    /**
+     *
+     * @param pxValue
+     * @return
+     */
+    public int px2dp( float pxValue) {
+        final float scale = getResources().getDisplayMetrics().density;
+        return (int) (pxValue / scale + 0.5f);
+    }
+
+    /**
+     *
+     * @param dipValue
+     * @return
+     */
+    public int dp2px( float dipValue) {
+        final float scale = getResources().getDisplayMetrics().density;
+        return (int) (dipValue * scale + 0.5f);
+    }
+
+    /**
+     *
+     * @param pxValue
+     * @return
+     */
+    public  int px2sp( float pxValue) {
+        final float fontScale = getResources().getDisplayMetrics().scaledDensity;
+        return (int) (pxValue / fontScale + 0.5f);
+    }
+
+    /**
+     *
+     * @param spValue
+     * @return
+     */
+    public int sp2px( float spValue) {
+        final float fontScale = getResources().getDisplayMetrics().scaledDensity;
+        return (int) (spValue * fontScale + 0.5f);
     }
 
 

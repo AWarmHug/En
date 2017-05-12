@@ -63,7 +63,7 @@ public class EnPlayController extends RelativeLayout implements SeekBar.OnSeekBa
         bt_full= (ImageButton) findViewById(R.id.bt_full);
         bt_full.setOnClickListener(this);
         mFormatBuilder = new StringBuilder();
-         mFormatter = new Formatter(mFormatBuilder, Locale.getDefault());
+        mFormatter = new Formatter(mFormatBuilder, Locale.getDefault());
     }
 
 
@@ -125,7 +125,6 @@ public class EnPlayController extends RelativeLayout implements SeekBar.OnSeekBa
             playControl.start();
 
             bt_play.setImageResource(R.drawable.ic_vec_play_stop_small);
-
         }
     }
 

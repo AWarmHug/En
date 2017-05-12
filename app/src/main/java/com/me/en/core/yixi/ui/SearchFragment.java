@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.content.res.ResourcesCompat;
 import android.support.v7.widget.Toolbar;
+import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -84,6 +85,9 @@ public class SearchFragment extends BaseFragment implements SearchView.OnSearchC
                     @Override
                     public TextView apply(@NonNull String s) throws Exception {
                         TextView tv = new TextView(getContext());
+                        tv.setPadding(dp2px(56),dp2px(8),0,0);
+
+                        tv.setTextSize(TypedValue.COMPLEX_UNIT_SP,16);
                         tv.setText(s);
                         return tv;
                     }
@@ -92,6 +96,7 @@ public class SearchFragment extends BaseFragment implements SearchView.OnSearchC
                 .subscribe(new Consumer<TextView>() {
                     @Override
                     public void accept(@NonNull TextView textView) throws Exception {
+
                         ll.addView(textView);
                     }
                 });
@@ -123,9 +128,16 @@ public class SearchFragment extends BaseFragment implements SearchView.OnSearchC
 
                         if (searchBase.getLecturers()!=null&&searchBase.getLecturers().size()>0){
                             //演讲人
+                            //演讲
+                            TextView tv=new TextView(getContext());
+                            tv.setText("相关讲者");
+                            tv.setGravity(Gravity.CENTER_HORIZONTAL);
+                            Drawable drawable= ResourcesCompat.getDrawable(getResources(),R.drawable.ic_vec_line,null);
+                            drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());//必须设置图片大小，否则不显示
+                            tv.setCompoundDrawables(null,null,null,drawable);
+                            ll.addView(tv);
 
                         }
-
 
                         if(searchBase.getLecs()!=null&&searchBase.getLecs().size()>0){
                             //演讲
@@ -135,24 +147,35 @@ public class SearchFragment extends BaseFragment implements SearchView.OnSearchC
                             Drawable drawable= ResourcesCompat.getDrawable(getResources(),R.drawable.ic_vec_line,null);
                             drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());//必须设置图片大小，否则不显示
                             tv.setCompoundDrawables(null,null,null,drawable);
+                            ll.addView(tv);
+
                             for (Lec lec : searchBase.getLecs()) {
                                 ll.addView(showItem(lec));
                             }
-
-
                         }
 
                     }
                 });
     }
 
-    private View showItem(Lec lec){
+    private View showItem(final Lec lec){
         LectureRvAdapter.NewViewHolder viewHolder=new LectureRvAdapter.NewViewHolder(LayoutInflater.from(getContext()).inflate(R.layout.recy_adapter_lecture_list,ll,false));
         viewHolder.tv_title.setText(lec.getTitle());
         viewHolder.tv_lecture_time_site.setText(lec.getTime());
         viewHolder.tv_viewnum.setVisibility(View.GONE);
         viewHolder.tv_lecturer_name.setText(lec.getLecturer().getNickname());
         Glide.with(getContext()).load(lec.getCover()).crossFade().centerCrop().into(viewHolder.iv_cover);
+        viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getActivity().getSupportFragmentManager()
+                        .beginTransaction()
+                        .add(R.id.rela_main,LectureFragment.newInstance(lec.getId()))
+                        .addToBackStack(LectureDetailFragment.class.getSimpleName())
+                        .commit();
+            }
+        });
+
         return viewHolder.itemView;
     }
 
