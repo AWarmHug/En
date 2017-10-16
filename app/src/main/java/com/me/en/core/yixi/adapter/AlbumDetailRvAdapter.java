@@ -44,6 +44,7 @@ public class AlbumDetailRvAdapter extends RecyclerView.Adapter<RecyclerView.View
         this.data = data;
     }
 
+
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         switch (viewType) {
@@ -73,7 +74,7 @@ public class AlbumDetailRvAdapter extends RecyclerView.Adapter<RecyclerView.View
                 ((SecondViewHolder) holder).tv_nickname.setText(data.getLectures().get(0).getLecturer().getNickname());
                 ((SecondViewHolder) holder).tv_time.setText(data.getLectures().get(0).getCreated_at());
 
-                Glide.with(((SecondViewHolder) holder).itemView.getContext()).load(!TextUtils.isEmpty(data.getLectures().get(0).getBackground())?data.getLectures().get(0).getBackground():data.getLectures().get(0).getLecturer().getBackground()).centerCrop().crossFade().into(((SecondViewHolder)holder).iv_cover);
+                Glide.with(((SecondViewHolder) holder).itemView.getContext()).load(!TextUtils.isEmpty(data.getLectures().get(0).getBackground()) ? data.getLectures().get(0).getBackground() : data.getLectures().get(0).getLecturer().getBackground()).centerCrop().crossFade().into(((SecondViewHolder) holder).iv_cover);
 
                 for (Tag tag : data.getLectures().get(0).getTags()) {
                     ((SecondViewHolder) holder).fl.addView(buildLabel(((SecondViewHolder) holder).itemView.getContext(), tag));
@@ -88,11 +89,8 @@ public class AlbumDetailRvAdapter extends RecyclerView.Adapter<RecyclerView.View
                     }
                 });
 
-
-
                 break;
         }
-
 
     }
 
@@ -127,10 +125,10 @@ public class AlbumDetailRvAdapter extends RecyclerView.Adapter<RecyclerView.View
         }
     }
 
-    class TopViewHolder extends RecyclerView.ViewHolder {
-        RelativeLayout rl;
-        ImageView iv_background;
-        TextView tv_title, tv_desc;
+    public static class TopViewHolder extends RecyclerView.ViewHolder {
+        public RelativeLayout rl;
+        public ImageView iv_background;
+        public TextView tv_title, tv_desc;
 
         public TopViewHolder(View itemView) {
             super(itemView);
@@ -141,34 +139,33 @@ public class AlbumDetailRvAdapter extends RecyclerView.Adapter<RecyclerView.View
         }
     }
 
-    class SecondViewHolder extends RecyclerView.ViewHolder {
+    public static class SecondViewHolder extends RecyclerView.ViewHolder {
 
-        TextView tv_purecontent, tv_title,tv_desc,tv_nickname,tv_time;
-        CardView cv;
-        FlowLayout fl;
-        ImageView iv_cover;
+        public TextView tv_purecontent, tv_title, tv_desc, tv_nickname, tv_time;
+        public CardView cv;
+        public FlowLayout fl;
+        public ImageView iv_cover;
 
         public SecondViewHolder(View itemView) {
             super(itemView);
             tv_purecontent = (TextView) itemView.findViewById(R.id.tv_purecontent);
             cv = (CardView) itemView.findViewById(R.id.cv);
-            iv_cover= (ImageView) itemView.findViewById(R.id.iv_cover);
+            iv_cover = (ImageView) itemView.findViewById(R.id.iv_cover);
             tv_title = (TextView) itemView.findViewById(R.id.tv_title);
-            tv_desc= (TextView) itemView.findViewById(R.id.tv_desc);
-            tv_nickname= (TextView) itemView.findViewById(R.id.tv_nickname);
-            tv_time= (TextView) itemView.findViewById(R.id.tv_time);
+            tv_desc = (TextView) itemView.findViewById(R.id.tv_desc);
+            tv_nickname = (TextView) itemView.findViewById(R.id.tv_nickname);
+            tv_time = (TextView) itemView.findViewById(R.id.tv_time);
 
             fl = (FlowLayout) itemView.findViewById(R.id.fl);
         }
     }
 
 
-   public interface OnAlbumDetailClickListener{
+    public interface OnAlbumDetailClickListener {
         void clickLookDetail(Lecture lecture);
 
         void clickLookTag(Tag tag);
     }
-
 
 
 }

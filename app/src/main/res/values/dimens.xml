@@ -21,7 +21,7 @@
     <dimen name="body_16sp">16sp</dimen>
     <dimen name="body_24sp">24sp</dimen>
 
-    <dimen name="name_16sp">18sp</dimen>
+    <dimen name="name_16sp">16sp</dimen>
     <dimen name="other_12sp">16sp</dimen>
 
     <dimen name="toolbar_height_56dp">56dp</dimen>

@@ -49,6 +49,8 @@ public class LectureDetailPresenter {
 
             @Override
             public void fail(Error e) {
+                lectureDetailView.getLecturePlayFail(e);
+
 
             }
         });

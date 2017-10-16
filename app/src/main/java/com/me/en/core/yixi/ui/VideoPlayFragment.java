@@ -48,7 +48,6 @@ public class VideoPlayFragment extends BaseFragment {
 
         evp.setVideoURI(Uri.parse(getArguments().getString("url")));
 
-
         evp.start();
 
     }

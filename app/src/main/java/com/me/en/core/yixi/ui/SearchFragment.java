@@ -3,6 +3,7 @@ package com.me.en.core.yixi.ui;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.content.res.ResourcesCompat;
 import android.support.v7.widget.Toolbar;
 import android.util.TypedValue;
@@ -16,12 +17,16 @@ import com.bumptech.glide.Glide;
 import com.me.en.R;
 import com.me.en.base.fragment.BaseFragment;
 import com.me.en.core.yixi.adapter.LectureRvAdapter;
+import com.me.en.core.yixi.adapter.LecturerRvAdapter;
 import com.me.en.entity.Base;
 import com.me.en.entity.Lec;
+import com.me.en.entity.Lecturer;
 import com.me.en.entity.Search;
 import com.me.en.net.RetrofitHelper;
 import com.me.en.net.api.YixiApi;
+import com.me.en.utils.InputUtil;
 import com.me.en.widget.SearchView;
+import com.me.en.widget.glide.GlideCircleTransform;
 
 import java.util.List;
 
@@ -83,12 +88,20 @@ public class SearchFragment extends BaseFragment implements SearchView.OnSearchC
                 })
                 .map(new Function<String, TextView>() {
                     @Override
-                    public TextView apply(@NonNull String s) throws Exception {
+                    public TextView apply(@NonNull final String s) throws Exception {
                         TextView tv = new TextView(getContext());
                         tv.setPadding(dp2px(56),dp2px(8),0,0);
 
                         tv.setTextSize(TypedValue.COMPLEX_UNIT_SP,16);
                         tv.setText(s);
+                        tv.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                sv.getEt().setText(s);
+                                sv.getEt().setSelection(s.length());
+                               SearchFragment.this.onClick(v,s);
+                            }
+                        });
                         return tv;
                     }
                 }).subscribeOn(Schedulers.io())
@@ -124,26 +137,35 @@ public class SearchFragment extends BaseFragment implements SearchView.OnSearchC
                 .subscribe(new Consumer<Search>() {
                     @Override
                     public void accept(@NonNull Search searchBase) throws Exception {
+                        InputUtil.hideSoftInput(sv.getEt(),getContext());
+
                         ll.removeAllViews();
 
                         if (searchBase.getLecturers()!=null&&searchBase.getLecturers().size()>0){
                             //演讲人
                             //演讲
-                            TextView tv=new TextView(getContext());
+                            TextView tv=new TextView(getContext(),null,R.style.AppTheme_TextAppearance_Title);
                             tv.setText("相关讲者");
+                            tv.setTextColor(ContextCompat.getColor(getContext(),R.color.black));
                             tv.setGravity(Gravity.CENTER_HORIZONTAL);
                             Drawable drawable= ResourcesCompat.getDrawable(getResources(),R.drawable.ic_vec_line,null);
                             drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());//必须设置图片大小，否则不显示
                             tv.setCompoundDrawables(null,null,null,drawable);
                             ll.addView(tv);
 
+                            for (Lecturer lecturer:searchBase.getLecturers()){
+                                ll.addView(showLecturer(lecturer));
+                            }
+
                         }
 
                         if(searchBase.getLecs()!=null&&searchBase.getLecs().size()>0){
                             //演讲
-                            TextView tv=new TextView(getContext());
+                            TextView tv=new TextView(getContext(),null,R.style.AppTheme_TextAppearance_Title);
                             tv.setText("相关演讲");
                             tv.setGravity(Gravity.CENTER_HORIZONTAL);
+                            tv.setTextColor(ContextCompat.getColor(getContext(),R.color.black));
+                            tv.setPadding(0,dp2px(18),0,0);
                             Drawable drawable= ResourcesCompat.getDrawable(getResources(),R.drawable.ic_vec_line,null);
                             drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());//必须设置图片大小，否则不显示
                             tv.setCompoundDrawables(null,null,null,drawable);
@@ -156,6 +178,15 @@ public class SearchFragment extends BaseFragment implements SearchView.OnSearchC
 
                     }
                 });
+    }
+
+
+    private View showLecturer(Lecturer lecturer){
+        LecturerRvAdapter.ViewHolder holder=new LecturerRvAdapter.ViewHolder(LayoutInflater.from(getContext()).inflate(R.layout.recy_adapter_lecturer,ll,false));
+        Glide.with(holder.itemView.getContext()).load(lecturer.getPic()).bitmapTransform(new GlideCircleTransform(holder.itemView.getContext())).crossFade().into(holder.iv_header);
+        holder.tv_name.setText(lecturer.getNickname());
+        return holder.itemView;
+
     }
 
     private View showItem(final Lec lec){

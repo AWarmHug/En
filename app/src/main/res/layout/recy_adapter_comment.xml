@@ -8,8 +8,8 @@
     android:paddingBottom="@dimen/top_bottom_margin_8dp"
     >
     <ImageView
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:layout_width="42dp"
+        android:layout_height="42dp"
         android:id="@+id/iv_header"
         />
 
@@ -29,7 +29,7 @@
         android:layout_toRightOf="@+id/iv_header"
         android:layout_marginLeft="8dp"
         android:layout_below="@+id/tv_name"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="4dp"
         style="@style/AppTheme.TextAppearance.Other"
         android:textSize="14sp"
         />

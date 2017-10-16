@@ -19,4 +19,5 @@ public interface LectureDetailView {
 
     void getRelatedS(Lecture lecture);
 
+    void getLecturePlayFail(Error e);
 }

@@ -12,7 +12,6 @@ import com.me.en.R;
 import com.me.en.entity.Lecturer;
 import com.me.en.widget.glide.GlideCircleTransform;
 import com.me.en.widget.recycleview.recyadapter.EnBaseRecyAdapter;
-import com.me.en.widget.recycleview.recyadapter.TailRecyAdapter;
 
 import java.util.List;
 
@@ -43,9 +42,9 @@ public class LecturerRvAdapter extends EnBaseRecyAdapter<Lecturer> {
     }
 
 
-    class ViewHolder extends RecyclerView.ViewHolder {
-        ImageView iv_header;
-        TextView tv_name;
+    public static class ViewHolder extends RecyclerView.ViewHolder {
+       public ImageView iv_header;
+       public TextView tv_name;
         public ViewHolder(View itemView) {
             super(itemView);
             iv_header= (ImageView) itemView.findViewById(R.id.iv_header);

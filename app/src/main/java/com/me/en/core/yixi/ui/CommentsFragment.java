@@ -2,10 +2,10 @@ package com.me.en.core.yixi.ui;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
-import android.widget.Toast;
 
 import com.me.en.R;
 import com.me.en.base.fragment.LazyFragment;
@@ -14,6 +14,7 @@ import com.me.en.core.yixi.presenter.CommentsPresenter;
 import com.me.en.core.yixi.view.CommentsView;
 import com.me.en.entity.Comment;
 import com.me.en.widget.recycleview.EnRecycleView;
+import com.me.en.widget.recycleview.RecycleDivider;
 import com.me.en.widget.recycleview.recyadapter.TailRecyAdapter;
 
 import java.util.List;
@@ -31,6 +32,7 @@ public class CommentsFragment extends LazyFragment implements CommentsView{
     private CommentRvAdapter adapter;
 
     private int page=1;
+    private Toolbar tb;
 
 
     private int id;
@@ -71,6 +73,8 @@ public class CommentsFragment extends LazyFragment implements CommentsView{
 
     @Override
     protected void initView(View view, Bundle savedInstanceState) {
+        tb= (Toolbar) view.findViewById(R.id.tb);
+
         rv_comments= (EnRecycleView) view.findViewById(R.id.rv_comments);
 
     }
@@ -81,6 +85,7 @@ public class CommentsFragment extends LazyFragment implements CommentsView{
             adapter = new CommentRvAdapter(comments);
             rv_comments.setAdapter(adapter);
             rv_comments.setLayoutManager(new LinearLayoutManager(getContext()));
+            rv_comments.addItemDecoration(new RecycleDivider(getContext(),LinearLayoutManager.VERTICAL,2, ContextCompat.getColor(getContext(),R.color.black_50)));
             rv_comments.setLoadMore(new EnRecycleView.LoadMore() {
                 @Override
                 public void load() {

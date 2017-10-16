@@ -36,4 +36,11 @@ public class MainActivity extends BaseActivity {
         super.onConfigurationChanged(newConfig);
     }
 
+
+
+
+
+
+
+
 }

@@ -1,10 +1,8 @@
 package com.me.en.core.yixi.ui;
 
-import android.animation.Animator;
-import android.animation.ObjectAnimator;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.content.ContextCompat;
+import android.support.design.widget.Snackbar;
 import android.support.v4.widget.NestedScrollView;
 import android.text.TextUtils;
 import android.util.Log;
@@ -112,6 +110,12 @@ public class LectureDetailFragment extends LazyFragment implements LectureDetail
         iv_play.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+//                getActivity().getSupportFragmentManager()
+//                        .beginTransaction()
+//                        .setCustomAnimations(R.anim.activity_new_in, R.anim.activity_new_out, R.anim.activity_old_in, R.anim.activity_old_out)
+//                        .add(R.id.rela_main, VideoPlayFragment.newInstance("http://flashmedia.eastday.com/newdate/news/2016-11/shznews1125-19.mp4"))
+//                        .addToBackStack(null)
+//                        .commit();
                 presenter.getLecturePlay(lecture.getId(), lecture.getVideo());
             }
         });
@@ -152,6 +156,11 @@ public class LectureDetailFragment extends LazyFragment implements LectureDetail
     }
 
     @Override
+    public void getLecturePlayFail(Error e) {
+        Snackbar.make(ll_related,"获取视频失败！",Snackbar.LENGTH_SHORT).show();
+    }
+
+    @Override
     public void getRelatedS(final Lecture lecture) {
         LectureRvAdapter.ViewHolder viewHolder = new LectureRvAdapter.ViewHolder(LayoutInflater.from(getContext()).inflate(R.layout.recy_adapter_lecture, ll_related, false));
         viewHolder.tv_title.setText(lecture.getTitle());
@@ -174,6 +183,7 @@ public class LectureDetailFragment extends LazyFragment implements LectureDetail
 
 
     }
+
 
 
 }

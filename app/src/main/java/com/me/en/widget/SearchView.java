@@ -5,7 +5,7 @@ import android.text.TextWatcher;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.me.en.R;
@@ -19,7 +19,7 @@ import com.me.en.R;
 public class SearchView extends LinearLayout {
 
     private EditText et;
-    private ImageButton ib;
+    private ImageView ib;
 
     private OnSearchClickListener onSearchClickListener;
 
@@ -45,7 +45,7 @@ public class SearchView extends LinearLayout {
 
         et= (EditText) findViewById(R.id.et_content);
 
-        ib= (ImageButton) findViewById(R.id.ib_search);
+        ib= (ImageView) findViewById(R.id.ib_search);
 
         ib.setOnClickListener(new OnClickListener() {
             @Override
@@ -62,7 +62,7 @@ public class SearchView extends LinearLayout {
         return et;
     }
 
-    public ImageButton getIb() {
+    public ImageView getIb() {
         return ib;
     }
 

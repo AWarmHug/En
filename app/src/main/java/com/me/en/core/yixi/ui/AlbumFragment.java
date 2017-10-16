@@ -2,7 +2,6 @@ package com.me.en.core.yixi.ui;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -14,7 +13,6 @@ import com.me.en.core.yixi.presenter.AlbumPresenter;
 import com.me.en.core.yixi.view.AlbumView;
 import com.me.en.entity.AlbumBean;
 import com.me.en.entity.Error;
-import com.me.en.widget.EnToolBar;
 
 /**
  * 作者: 51hs_android
@@ -60,6 +58,7 @@ public class AlbumFragment extends LazyFragment implements AlbumView {
                 getActivity().getSupportFragmentManager()
                         .beginTransaction()
                         .add(R.id.rela_main,MoreFragment.newInstance())
+//                        .add(R.id.rela_main,DemoFragment.newInstance())
                         .addToBackStack(MoreFragment.class.getSimpleName())
                         .commit();
             }
@@ -87,7 +86,7 @@ public class AlbumFragment extends LazyFragment implements AlbumView {
     public void getSelectSuccess(AlbumBean albumBean) {
         AlbumDetailAdapter adapter=new AlbumDetailAdapter(getFragmentManager(),albumBean.getData());
         vp.setAdapter(adapter);
-        vp.setOffscreenPageLimit(albumBean.getData().size());
+        vp.setOffscreenPageLimit(2);
 
     }
 

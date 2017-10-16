@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
-import android.support.v7.widget.Toolbar;
 import android.view.View;
 
 import com.me.en.R;
@@ -85,7 +84,7 @@ public class LecturerTypeFragment extends LazyFragment {
                         LecturerVpAdapter adapter =new LecturerVpAdapter(getChildFragmentManager(),categories);
                         vp.setAdapter(adapter);
                         tl.setupWithViewPager(vp);
-                        vp.setOffscreenPageLimit(categories.size());
+                        vp.setOffscreenPageLimit(3);
 
                     }
                 });

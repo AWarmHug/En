@@ -16,6 +16,7 @@ public class EnVideoView extends VideoView {
 
     private GestureDetector mGesture;
 
+
     private OnEnVideoViewGester onEnVideoViewGester;
 
     public void setOnEnVideoViewGester(OnEnVideoViewGester onEnVideoViewGester) {

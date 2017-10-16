@@ -5,7 +5,8 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v4.content.ContextCompat;
+import android.util.Log;
+import android.view.GestureDetector;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -22,11 +23,23 @@ import com.me.en.R;
  */
 
 public abstract class GodFragment extends Fragment implements View.OnTouchListener {
+    private static final String TAG = "GodFragment";
 
+
+    private Animation in,out;
+    private GestureDetector mGestureDetector;
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+
+    }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+       in= AnimationUtils.loadAnimation(getContext(), R.anim.v_fragment_enter);
+       out= AnimationUtils.loadAnimation(getContext(), R.anim.v_fragment_exit);
 
     }
 
@@ -34,12 +47,17 @@ public abstract class GodFragment extends Fragment implements View.OnTouchListen
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(getLayout(), container, false);
-        view.setBackgroundColor(ContextCompat.getColor(getContext(),R.color.white));
         view.setOnTouchListener(this);
         initView(view,savedInstanceState);
-//        view.setBackground(getActivity().getWindow().getDecorView().getBackground());
         return view;
     }
+
+    private void slideFinish(View view) {
+
+        mGestureDetector=new GestureDetector(getContext(),new GestureListener());
+
+    }
+
 
     protected abstract int getLayout();
 
@@ -66,6 +84,66 @@ public abstract class GodFragment extends Fragment implements View.OnTouchListen
         return statusBarHeight;
     }
 
+    /**
+     * 手势监听
+     */
+    private class GestureListener extends GestureDetector.SimpleOnGestureListener {
+
+        private static final String TAG = "GestureListener";
+        private float x;
+
+
+        @Override
+        public void onShowPress(MotionEvent e) {
+            super.onShowPress(e);
+            Log.d(TAG, "onShowPress: ");
+
+        }
+
+        @Override
+        public boolean onDown(MotionEvent e) {
+            Log.d(TAG, "onDown: ");
+            x=0;
+            return super.onDown(e);
+        }
+
+        @Override
+        public boolean onSingleTapUp(MotionEvent e) {
+            Log.d(TAG, "onSingleTapUp: ");
+            return super.onSingleTapUp(e);
+        }
+
+        @Override
+        public boolean onScroll(MotionEvent e1, MotionEvent e2, float distanceX, float distanceY) {
+
+            Log.d(TAG, "onScroll: distanceX="+distanceX);
+            Log.d(TAG, "onScroll: distanceY="+distanceY);
+            x+=distanceX;
+
+
+            Log.d(TAG, "onScroll: "+x);
+
+
+            return super.onScroll(e1, e2, distanceX, distanceY);
+        }
+
+
+        @Override
+        public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
+            Log.d(TAG, "onFling: ");
+
+            return super.onFling(e1, e2, velocityX, velocityY);
+        }
+
+
+        @Override
+        public boolean onContextClick(MotionEvent e) {
+            Log.d(TAG, "onContextClick: ");
+            return super.onContextClick(e);
+        }
+    }
+
+
     @Override
     public boolean onTouch(View v, MotionEvent event) {
         if (v == getView()) {
@@ -74,14 +152,15 @@ public abstract class GodFragment extends Fragment implements View.OnTouchListen
         return false;
     }
 
+
+
     @Override
     public Animation onCreateAnimation(int transit, boolean enter, int nextAnim) {
         if (enter){
-            return AnimationUtils.loadAnimation(getContext(), R.anim.v_fragment_enter);
+            return in;
         }
-        return AnimationUtils.loadAnimation(getContext(), R.anim.v_fragment_exit);
+        return out;
     }
-
 
     /**
      *
@@ -122,6 +201,7 @@ public abstract class GodFragment extends Fragment implements View.OnTouchListen
         final float fontScale = getResources().getDisplayMetrics().scaledDensity;
         return (int) (spValue * fontScale + 0.5f);
     }
+
 
 
 

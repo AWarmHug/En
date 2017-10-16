@@ -2,8 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
-    >
+    android:background="@color/white_bg">
 
 
     <android.support.v4.widget.NestedScrollView
@@ -28,8 +27,6 @@
                 android:layout_height="match_parent"
                 android:orientation="vertical"
                 android:padding="@dimen/left_right_margin_16dp">
-
-
 
 
                 <TextView
@@ -68,10 +65,9 @@
                     android:layout_height="200dp" />
 
                 <ImageView
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
+                    android:layout_width="36dp"
+                    android:layout_height="36dp"
                     android:layout_centerInParent="true"
-                    android:background="@color/white"
                     android:src="@drawable/ic_vec_play" />
 
 
@@ -79,17 +75,16 @@
 
 
             <TextView
+                style="@style/AppTheme.TextAppearance.Title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="演讲正文"
-                style="@style/AppTheme.TextAppearance.Title"
-                android:textSize="18sp"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="20dp"
                 android:drawableBottom="@drawable/ic_vec_line"
+                android:text="演讲正文"
+                android:textSize="18sp"
 
                 />
-
 
 
             <TextView
@@ -111,23 +106,22 @@
                 android:textSize="16sp" />
 
 
-
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1px"
-                android:layout_marginTop="40dp"
                 android:layout_marginBottom="20dp"
+                android:layout_marginTop="40dp"
                 android:background="@color/colorAccent" />
 
             <TextView
+                style="@style/AppTheme.TextAppearance.Title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="演讲嘉宾"
-                style="@style/AppTheme.TextAppearance.Title"
-                android:textSize="18sp"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="20dp"
                 android:drawableBottom="@drawable/ic_vec_line"
+                android:text="演讲嘉宾"
+                android:textSize="18sp"
 
                 />
 
@@ -156,36 +150,34 @@
                 android:layout_marginTop="@dimen/top_bottom_margin_8dp"
                 android:gravity="center_horizontal"
                 android:textColor="@color/blue"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp"
                 android:textSize="14sp" />
 
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1px"
-                android:layout_marginTop="40dp"
                 android:layout_marginBottom="20dp"
+                android:layout_marginTop="40dp"
                 android:background="@color/colorAccent" />
 
             <TextView
+                style="@style/AppTheme.TextAppearance.Title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="相关推荐"
-                style="@style/AppTheme.TextAppearance.Title"
-                android:textSize="18sp"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="20dp"
                 android:drawableBottom="@drawable/ic_vec_line"
-                />
+                android:text="相关推荐"
+                android:textSize="18sp" />
 
 
             <LinearLayout
                 android:id="@+id/ll_related"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
                 android:layout_marginTop="20dp"
-                >
-            </LinearLayout>
-
+                android:orientation="vertical"></LinearLayout>
 
 
         </LinearLayout>
